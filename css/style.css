@@ -2253,8 +2253,229 @@ a {
 }
 
 
+/* ==========================================================
+   MODUL ADMINISTRATOR STYLES
+   ========================================================== */
+.sidebar-link.admin-active {
+  background-color: #1a7569 !important;
+  color: #ffffff !important;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(26, 117, 105, 0.35);
+}
+
+.admin-filter-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 18px;
+}
+
+.admin-filter-tab {
+  background-color: #ffffff;
+  border: 1px solid #335948;
+  border-radius: 6px;
+  padding: 6px 18px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #173b2c;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.admin-filter-tab:hover {
+  background-color: #f1f7f3;
+}
+
+.admin-filter-tab.active {
+  background-color: #184e37;
+  color: #ffffff;
+  border-color: #184e37;
+}
+
+.btn-table-action {
+  background-color: #ffffff;
+  border: 1px solid #d4ded9;
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  color: #333333;
+  transition: all 0.15s;
+}
+
+.btn-table-action:hover {
+  background-color: #f0f4f2;
+}
+
+.btn-table-action.action-delete {
+  color: #d93838;
+  border-color: #f3c2c2;
+}
+.btn-table-action.action-delete:hover {
+  background-color: #fde8e8;
+}
+
+.badge-role-user {
+  background-color: #e2f0fe;
+  color: #2563eb;
+  padding: 4px 18px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-style: italic;
+  display: inline-block;
+}
+
+.badge-role-pengelola {
+  background-color: #feefdf;
+  color: #c26117;
+  padding: 4px 18px;
+  border-radius: 12px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.badge-status-aktif {
+  background-color: #e2f7ea;
+  color: #188a42;
+  padding: 4px 16px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.badge-status-nonaktif {
+  background-color: #fde5e5;
+  color: #d93838;
+  padding: 4px 16px;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  display: inline-block;
+}
+
+/* Modal Tambah/Edit Akun Admin */
+.admin-account-modal {
+  width: 100%;
+  max-width: 580px;
+  background-color: #ffffff;
+  border-radius: 18px;
+  padding: 26px 32px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.45);
+  animation: modalScaleUp 0.25s ease-out;
+}
+
+.admin-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.admin-modal-header h3 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #111111;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px 20px;
+  margin-bottom: 26px;
+}
+
+.admin-form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #222222;
+  margin-bottom: 6px;
+}
+
+.admin-form-input {
+  width: 100%;
+  border: 1.5px solid #a3c4b4;
+  border-radius: 8px;
+  padding: 9px 12px;
+  font-size: 0.9rem;
+  color: #111111;
+  outline: none;
+  background-color: #ffffff;
+  font-family: inherit;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.admin-form-input:focus {
+  border-color: #184e37;
+  box-shadow: 0 0 0 3px rgba(116, 198, 157, 0.25);
+}
+
+.admin-modal-footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+.btn-admin-cancel {
+  background-color: #ffffff;
+  border: 1.5px solid #222222;
+  color: #222222;
+  padding: 8px 26px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-admin-cancel:hover {
+  background-color: #f3f3f3;
+}
+
+.btn-admin-save {
+  background-color: #74c69d;
+  border: none;
+  color: #0b221a;
+  padding: 8px 28px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-admin-save:hover {
+  filter: brightness(1.06);
+}
+
+/* Custom Scrollbar untuk Tabel Pendapatan Admin */
+.admin-scroll-container {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.admin-scroll-container::-webkit-scrollbar {
+  width: 10px;
+}
+
+.admin-scroll-container::-webkit-scrollbar-track {
+  background: #e2ede6;
+  border-radius: 8px;
+}
+
+.admin-scroll-container::-webkit-scrollbar-thumb {
+  background: #5eb388;
+  border-radius: 8px;
+}
+
+.admin-scroll-container::-webkit-scrollbar-thumb:hover {
+  background: #46966d;
+}
+
 @media (max-width: 992px) {
   .categories-grid,
+
   .venues-grid,
   .peralatan-grid {
     grid-template-columns: repeat(2, 1fr);

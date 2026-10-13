@@ -21,6 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initJadwalVenueSelect();
   initPaymentFlow();
   initBookingTimeSlots();
+  initAdminManagement();
 });
 
 // Helper: Ambil semua akun (Demo + Registrasi Baru)
@@ -58,6 +59,8 @@ function initAuthUI() {
     avatar.addEventListener('click', () => {
       if (role === 'pengelola') {
         window.location.href = 'pengelola-dashboard.html';
+      } else if (role === 'admin') {
+        window.location.href = 'admin-manajemen.html';
       } else {
         window.location.href = 'dashboard.html';
       }
@@ -93,6 +96,8 @@ function initLoginForm() {
       
       if (matched.role === 'pengelola') {
         window.location.href = 'pengelola-dashboard.html';
+      } else if (matched.role === 'admin') {
+        window.location.href = 'admin-manajemen.html';
       } else {
         window.location.href = 'dashboard.html';
       }
@@ -406,3 +411,214 @@ window.unduhBuktiBooking = function() {
   alert('Bukti booking sedang diunduh (Simulasi Bukti PDF SIBORA).');
   window.print();
 };
+
+// ==========================================================
+// 11. Modul Administrator - Manajemen Akun
+// ==========================================================
+function initAdminManagement() {
+  const tabs = document.querySelectorAll('.admin-filter-tab');
+  const searchInput = document.querySelector('#adminSearchInput');
+
+  // Filter tabs (Semua, User, Pengelola Lapangan)
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      filterAdminAccounts();
+    });
+  });
+
+  // Search input live filtering
+  searchInput?.addEventListener('input', () => {
+    filterAdminAccounts();
+  });
+}
+
+function filterAdminAccounts() {
+  const activeTab = document.querySelector('.admin-filter-tab.active');
+  const filterRole = activeTab?.dataset.filter || 'all';
+  const query = (document.querySelector('#adminSearchInput')?.value || '').toLowerCase().trim();
+  const rows = document.querySelectorAll('#adminTableBody tr');
+
+  rows.forEach(row => {
+    const role = row.dataset.role || '';
+    const textContent = row.textContent.toLowerCase();
+    const matchesRole = (filterRole === 'all' || role === filterRole);
+    const matchesQuery = query === '' || textContent.includes(query);
+
+    if (matchesRole && matchesQuery) {
+      row.style.display = '';
+    } else {
+      row.style.display = 'none';
+    }
+  });
+}
+
+window.openAdminAccountModal = function() {
+  const modal = document.querySelector('#modalTambahAkun');
+  const form = document.querySelector('#formAdminAkun');
+  const title = document.querySelector('#modalAdminTitle');
+  const editId = document.querySelector('#editAccountId');
+  
+  if (form) form.reset();
+  if (editId) editId.value = '';
+  if (title) title.textContent = 'Tambah Akun';
+  toggleLapanganField();
+
+  if (modal) modal.classList.add('active');
+};
+
+window.closeAdminAccountModal = function() {
+  const modal = document.querySelector('#modalTambahAkun');
+  if (modal) modal.classList.remove('active');
+};
+
+window.toggleLapanganField = function() {
+  const roleSelect = document.querySelector('#selectRole');
+  const groupLapangan = document.querySelector('#groupLapangan');
+  const selectLapangan = document.querySelector('#selectLapangan');
+  if (!roleSelect || !selectLapangan) return;
+
+  if (roleSelect.value === 'User') {
+    selectLapangan.value = '-';
+    if (groupLapangan) groupLapangan.style.opacity = '0.5';
+    selectLapangan.disabled = true;
+  } else {
+    selectLapangan.disabled = false;
+    if (groupLapangan) groupLapangan.style.opacity = '1';
+    if (selectLapangan.value === '-') {
+      selectLapangan.value = 'Hedera Padel Club';
+    }
+  }
+};
+
+window.editAccount = function(id) {
+  const row = document.querySelector(`#adminTableBody tr[data-id="${id}"]`);
+  if (!row) return;
+
+  const nama = row.querySelector('td:nth-child(1) div:first-child')?.textContent.trim();
+  const email = row.querySelector('td:nth-child(1) div:last-child')?.textContent.trim();
+  const role = row.getAttribute('data-role') || 'User';
+  const lapangan = row.querySelector('td:nth-child(3)')?.textContent.trim();
+  const status = row.querySelector('td:nth-child(4) span')?.textContent.trim();
+
+  document.querySelector('#editAccountId').value = id;
+  document.querySelector('#inputNamaLengkap').value = nama || '';
+  document.querySelector('#inputEmail').value = email || '';
+  document.querySelector('#selectRole').value = role;
+  toggleLapanganField();
+  if (role !== 'User') {
+    document.querySelector('#selectLapangan').value = lapangan;
+  }
+  document.querySelector('#selectStatus').value = status;
+  document.querySelector('#modalAdminTitle').textContent = 'Edit Akun';
+
+  const modal = document.querySelector('#modalTambahAkun');
+  if (modal) modal.classList.add('active');
+};
+
+window.resetPassword = function(id) {
+  const row = document.querySelector(`#adminTableBody tr[data-id="${id}"]`);
+  const nama = row?.querySelector('td:nth-child(1) div:first-child')?.textContent.trim() || 'Akun';
+  if (confirm(`Apakah Anda yakin ingin mereset password untuk ${nama}?`)) {
+    alert(`Password untuk akun "${nama}" telah berhasil di-reset ke: default123`);
+  }
+};
+
+window.deleteAccount = function(id) {
+  const row = document.querySelector(`#adminTableBody tr[data-id="${id}"]`);
+  const nama = row?.querySelector('td:nth-child(1) div:first-child')?.textContent.trim() || 'Akun';
+  if (confirm(`Apakah Anda yakin ingin menghapus akun "${nama}"?`)) {
+    row?.remove();
+    updateAdminStatCards();
+    alert(`Akun "${nama}" berhasil dihapus.`);
+  }
+};
+
+window.saveAdminAccount = function(event) {
+  event.preventDefault();
+  const editId = document.querySelector('#editAccountId').value;
+  const nama = document.querySelector('#inputNamaLengkap').value.trim();
+  const email = document.querySelector('#inputEmail').value.trim();
+  const role = document.querySelector('#selectRole').value;
+  const lapangan = role === 'User' ? '-' : document.querySelector('#selectLapangan').value;
+  const status = document.querySelector('#selectStatus').value;
+
+  const roleBadgeClass = role === 'User' ? 'badge-role-user' : 'badge-role-pengelola';
+  const statusBadgeClass = status === 'Aktif' ? 'badge-status-aktif' : 'badge-status-nonaktif';
+
+  if (editId) {
+    // Mode Update
+    const row = document.querySelector(`#adminTableBody tr[data-id="${editId}"]`);
+    if (row) {
+      row.setAttribute('data-role', role);
+      row.children[0].innerHTML = `
+        <div style="font-weight: 700; color: #111111; font-size: 0.92rem;">${nama}</div>
+        <div style="color: #777777; font-size: 0.78rem;">${email}</div>
+      `;
+      row.children[1].innerHTML = `<span class="${roleBadgeClass}">${role}</span>`;
+      row.children[2].innerHTML = (role === 'User') 
+        ? `<span style="color: #555555; font-size: 0.95rem;">-</span>` 
+        : `<span style="font-weight: 700; color: #111111; font-size: 0.92rem;">${lapangan}</span>`;
+      row.children[3].innerHTML = `<span class="${statusBadgeClass}">${status}</span>`;
+      alert(`Akun "${nama}" berhasil diperbarui!`);
+    }
+  } else {
+    // Mode Tambah Baru
+    const newId = Date.now();
+    const tbody = document.querySelector('#adminTableBody');
+    const newRow = document.createElement('tr');
+    newRow.setAttribute('data-role', role);
+    newRow.setAttribute('data-id', newId);
+    newRow.innerHTML = `
+      <td style="padding: 14px 18px;">
+        <div style="font-weight: 700; color: #111111; font-size: 0.92rem;">${nama}</div>
+        <div style="color: #777777; font-size: 0.78rem;">${email}</div>
+      </td>
+      <td style="padding: 14px 18px;">
+        <span class="${roleBadgeClass}">${role}</span>
+      </td>
+      <td style="padding: 14px 18px;">
+        ${role === 'User' 
+          ? '<span style="color: #555555; font-size: 0.95rem;">-</span>' 
+          : '<span style="font-weight: 700; color: #111111; font-size: 0.92rem;">' + lapangan + '</span>'}
+      </td>
+      <td style="padding: 14px 18px;">
+        <span class="${statusBadgeClass}">${status}</span>
+      </td>
+      <td style="padding: 14px 18px;">
+        <div style="display: flex; gap: 6px;">
+          <button type="button" class="btn-table-action" onclick="editAccount(${newId})">Edit</button>
+          <button type="button" class="btn-table-action" onclick="resetPassword(${newId})">Reset</button>
+          <button type="button" class="btn-table-action action-delete" onclick="deleteAccount(${newId})">Hapus</button>
+        </div>
+      </td>
+    `;
+    tbody.appendChild(newRow);
+    alert(`Akun baru "${nama}" berhasil ditambahkan!`);
+  }
+
+  updateAdminStatCards();
+  closeAdminAccountModal();
+  filterAdminAccounts();
+};
+
+function updateAdminStatCards() {
+  const rows = document.querySelectorAll('#adminTableBody tr');
+  const total = rows.length;
+  let userCount = 0;
+  let pengelolaCount = 0;
+
+  rows.forEach(r => {
+    if (r.getAttribute('data-role') === 'User') userCount++;
+    if (r.getAttribute('data-role') === 'Pengelola Lapangan') pengelolaCount++;
+  });
+
+  const totalEl = document.querySelector('#statTotalAkun');
+  const userEl = document.querySelector('#statTotalUser');
+  const pengelolaEl = document.querySelector('#statTotalPengelola');
+
+  if (totalEl) totalEl.textContent = total;
+  if (userEl) userEl.textContent = userCount;
+  if (pengelolaEl) pengelolaEl.textContent = pengelolaCount;
+}

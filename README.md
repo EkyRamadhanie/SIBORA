@@ -57,10 +57,24 @@ Aplikasi ini dirancang dengan arsitektur **3-Tier** (*Presentation, Application,
 13. **Kelola Peralatan Olahraga (`pengelola-peralatan.html`)**
     - Manajemen alat olahraga (*Bola Futsal, Raket Badminton*) dengan tombol edit.
     - Kartu dashed `+ Tambah Peralatan`.
-14. **Laporan Pendapatan (`pengelola-pendapatan.html`)**
+14. **Laporan Pendapatan Pengelola (`pengelola-pendapatan.html`)**
     - 3 Ringkasan kartu: *Total Pendapatan (Rp 13,95jt)*, *Total Booking (138)*, *Pembatalan (4)*.
     - Diagram garis komparasi multi-tahun (*Perbandingan 2024 vs 2025*).
     - Tabel rincian pendapatan berdasarkan fasilitas dan tombol *Export PDF*.
+
+### 🛡️ Fitur Sisi Administrator Sistem (Budi Administrator)
+15. **Manajemen Akun Pengguna & Pengelola (`admin-manajemen.html`)**
+    - 3 Kartu metrik: *Total Akun (5)*, *User (3)*, *Pengelola Lapangan (2)*.
+    - Filter kategori interaktif (*Semua*, *User*, *Pengelola Lapangan*).
+    - Pencarian live instan berdasarkan nama, email, atau nama lapangan.
+    - Tabel data akun lengkap dengan badge role dan badge status aktif/nonaktif.
+    - Aksi manajemen: *Edit*, *Reset Password*, dan *Hapus*.
+    - **Modal Pop-Up Tambah & Edit Akun**: Form 2-kolom responsif untuk penambahan atau modifikasi akun (*Nama lengkap, Email, Role, No. HP, Lapangan yang dikelola, Password, Status*).
+16. **Laporan Pendapatan Global Admin (`admin-pendapatan.html`)**
+    - 3 Kartu metrik global: *Total Pendapatan (Rp 48jt)*, *Total Booking (320)*, *Pembatalan (12)*.
+    - Tombol filter periode (*Bulan ini*) dan *Export PDF*.
+    - Diagram garis komparatif tahunan 2024 vs 2025 berbasis SVG dengan area fill gradien halus.
+    - Tabel rekapitulasi performa per lapangan (*Futsal A, Futsal B, Futsal C*) dengan scrollbar kustom.
 
 ---
 
@@ -69,7 +83,7 @@ Aplikasi ini dirancang dengan arsitektur **3-Tier** (*Presentation, Application,
 ```text
 SIBORA/
 ├── index.html                  # Halaman Utama (Home)
-├── login.html                  # Halaman Login (Role-based redirect)
+├── login.html                  # Halaman Login (Role-based redirect: User, Pengelola, Admin)
 ├── register.html               # Halaman Pendaftaran Akun
 ├── lapangan.html               # Katalog & Pencarian Lapangan
 ├── peralatan.html              # Katalog & Sewa Peralatan (dengan Modal Counter)
@@ -83,6 +97,8 @@ SIBORA/
 ├── pengelola-lapangan.html     # Kelola Lapangan & Fasilitas Pengelola
 ├── pengelola-peralatan.html    # Kelola Peralatan Pengelola
 ├── pengelola-pendapatan.html   # Laporan Pendapatan Pengelola
+├── admin-manajemen.html        # Manajemen Akun Administrator (Tabel, Filter, Modal Tambah/Edit)
+├── admin-pendapatan.html       # Laporan Pendapatan Global Administrator (Chart Komparasi 2024 vs 2025)
 ├── css/
 │   └── style.css               # Desain terpadu (Tema Hijau Tua, Glassmorphism, Responsive)
 ├── js/
@@ -101,12 +117,12 @@ Sistem frontend telah dilengkapi dengan akun bawaan untuk kemudahan testing alur
 
 | Username | Password | Peran (Role) | Keterangan & Pengalihan Halaman |
 | :--- | :--- | :--- | :--- |
+| **`admin`** | **`admin123`** | Admin | Masuk langsung ke `admin-manajemen.html` |
 | **`budi`** | **`123456`** | Pengelola | Masuk langsung ke `pengelola-dashboard.html` |
 | **`pengelola`**| **`pengelola123`**| Pengelola | Masuk langsung ke `pengelola-dashboard.html` |
 | **`dani`** | **`123456`** | Pelanggan | Masuk langsung ke `dashboard.html` |
 | **`user`** | **`123456`** | Pelanggan | Masuk langsung ke `dashboard.html` |
-| **`admin`** | **`admin123`** | Admin | Akun Super Admin |
-| **`sibora`** | **`sibora2026`** | Admin | Akun Cadangan |
+| **`sibora`** | **`sibora2026`** | Admin | Akun Cadangan Administrator |
 
 > *Catatan:* Anda juga dapat mendaftar akun baru lewat [register.html](register.html). Akun baru otomatis disimpan ke `localStorage` browser dan dapat digunakan langsung untuk login.
 

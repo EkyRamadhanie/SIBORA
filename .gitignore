@@ -14,3 +14,7 @@ node_modules/
 dist/
 build/
 *.log
+
+# Antigravity Secrets (Figma MCP token)
+.agents/mcp_config.json
+
