@@ -3,10 +3,12 @@
 
 // Akun Demo Bawaan
 const DEMO_ACCOUNTS = [
-  { username: 'admin', password: 'admin123' },
-  { username: 'user', password: '123456' },
-  { username: 'dani', password: '123456' },
-  { username: 'sibora', password: 'sibora2026' }
+  { username: 'admin', password: 'admin123', role: 'admin' },
+  { username: 'user', password: '123456', role: 'user' },
+  { username: 'dani', password: '123456', role: 'user' },
+  { username: 'budi', password: '123456', role: 'pengelola' },
+  { username: 'pengelola', password: 'pengelola123', role: 'pengelola' },
+  { username: 'sibora', password: 'sibora2026', role: 'admin' }
 ];
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -35,6 +37,7 @@ function isUserLoggedIn() {
 // 1. Inisialisasi Tampilan Berdasarkan Status Login
 function initAuthUI() {
   const loggedIn = isUserLoggedIn();
+  const role = sessionStorage.getItem('sibora_role') || 'user';
   const logoutButtons = document.querySelectorAll('a[href="login.html"].nav-pill, #btnSidebarLogout');
   
   logoutButtons.forEach(btn => {
@@ -42,20 +45,25 @@ function initAuthUI() {
       e.preventDefault();
       sessionStorage.removeItem('sibora_logged_in');
       sessionStorage.removeItem('sibora_username');
+      sessionStorage.removeItem('sibora_role');
       alert('Anda berhasil logout.');
       window.location.href = 'login.html';
     });
   });
 
-  // Tautkan Avatar ke Dashboard
+  // Tautkan Avatar ke Dashboard sesuai role
   const avatars = document.querySelectorAll('.nav-avatar');
   avatars.forEach(avatar => {
     avatar.style.cursor = 'pointer';
     avatar.addEventListener('click', () => {
-      window.location.href = 'dashboard.html';
+      if (role === 'pengelola') {
+        window.location.href = 'pengelola-dashboard.html';
+      } else {
+        window.location.href = 'dashboard.html';
+      }
     });
     if (loggedIn) {
-      const username = sessionStorage.getItem('sibora_username') || 'Dani';
+      const username = sessionStorage.getItem('sibora_username') || 'Pengguna';
       avatar.title = `Profil: ${username} (Klik untuk Dashboard)`;
     }
   });
@@ -81,7 +89,13 @@ function initLoginForm() {
       if (errorBanner) errorBanner.style.display = 'none';
       sessionStorage.setItem('sibora_logged_in', 'true');
       sessionStorage.setItem('sibora_username', matched.username);
-      window.location.href = 'dashboard.html';
+      sessionStorage.setItem('sibora_role', matched.role || 'user');
+      
+      if (matched.role === 'pengelola') {
+        window.location.href = 'pengelola-dashboard.html';
+      } else {
+        window.location.href = 'dashboard.html';
+      }
     } else {
       if (errorBanner) {
         errorBanner.style.display = 'block';

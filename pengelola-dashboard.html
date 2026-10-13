@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard Pengelola - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #ebf5ee;">
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar Kiri Pengelola -->
+    <aside class="dashboard-sidebar">
+      <a href="index.html" class="brand-logo">SIBORA</a>
+
+      <nav class="sidebar-menu">
+        <a href="pengelola-dashboard.html" class="sidebar-link active">
+          <span>⊞</span> Dashboard
+        </a>
+        <a href="pengelola-booking.html" class="sidebar-link">
+          <span>📅</span> Booking
+        </a>
+        <a href="pengelola-lapangan.html" class="sidebar-link">
+          <span>⚽</span> Lapangan
+        </a>
+        <a href="pengelola-peralatan.html" class="sidebar-link">
+          <span>🏀</span> Peralatan
+        </a>
+        <a href="pengelola-pendapatan.html" class="sidebar-link">
+          <span>📄</span> Pendapatan
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom-links">
+        <a href="index.html" class="sidebar-link">
+          <span>🏠</span> Kembali ke Home
+        </a>
+        <a href="login.html" class="sidebar-link" id="btnSidebarLogout">
+          <span>🚪</span> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Konten Kanan -->
+    <main class="dashboard-main-content">
+      
+      <!-- Topbar Header -->
+      <header class="dashboard-topbar" style="background-color: transparent; border: none; padding: 24px 36px 10px;">
+        <div>
+          <h1 style="font-size: 2rem; font-weight: 700; color: #143529;">Dashboard Pengelola</h1>
+        </div>
+
+        <div class="user-top-profile">
+          <div class="user-text-right">
+            <h4>Budi</h4>
+            <p>Pengelola</p>
+          </div>
+          <div class="user-big-avatar" style="background-color: #2b7a67;">
+            👤
+          </div>
+        </div>
+      </header>
+
+      <!-- Body Section -->
+      <div style="padding: 10px 36px 40px;">
+        
+        <!-- 3 Stat Cards Top -->
+        <div class="pengelola-stat-grid">
+          
+          <div class="pengelola-stat-card">
+            <span>Total booking hari ini</span>
+            <h3>5</h3>
+            <small>▲ 12% dari kemarin</small>
+          </div>
+
+          <div class="pengelola-stat-card">
+            <span>Pendapatan hari ini</span>
+            <h3>Rp 500</h3>
+            <small>▲ 8% dari kemarin</small>
+          </div>
+
+          <div class="pengelola-stat-card">
+            <span>Lapangan aktif</span>
+            <h3>1/2</h3>
+            <small style="color: #666666;">2 sedang direnovasi</small>
+          </div>
+
+        </div>
+
+        <!-- Card: Pendapatan Mingguan (Bar Chart) -->
+        <div class="chart-panel-card">
+          <h3>Pendapatan Mingguan</h3>
+          
+          <div class="svg-chart-container">
+            <svg viewBox="0 0 720 220" width="100%" height="220" style="overflow: visible;">
+              <!-- Grid lines & Y Axis -->
+              <line x1="40" y1="20" x2="700" y2="20" stroke="#f0f3f1" stroke-width="1"/>
+              <text x="25" y="24" fill="#666" font-size="11" text-anchor="end">40</text>
+
+              <line x1="40" y1="60" x2="700" y2="60" stroke="#f0f3f1" stroke-width="1"/>
+              <text x="25" y="64" fill="#666" font-size="11" text-anchor="end">32</text>
+
+              <line x1="40" y1="100" x2="700" y2="100" stroke="#f0f3f1" stroke-width="1"/>
+              <text x="25" y="104" fill="#666" font-size="11" text-anchor="end">24</text>
+
+              <line x1="40" y1="140" x2="700" y2="140" stroke="#f0f3f1" stroke-width="1"/>
+              <text x="25" y="144" fill="#666" font-size="11" text-anchor="end">16</text>
+
+              <line x1="40" y1="180" x2="700" y2="180" stroke="#f0f3f1" stroke-width="1"/>
+              <text x="25" y="184" fill="#666" font-size="11" text-anchor="end">8</text>
+
+              <line x1="40" y1="190" x2="700" y2="190" stroke="#ccc" stroke-width="1"/>
+              <text x="25" y="194" fill="#666" font-size="11" text-anchor="end">0</text>
+
+              <!-- Bars (Purple #8f8eff) -->
+              <!-- Minggu 1 (val 12) -->
+              <rect x="75" y="130" width="52" height="60" fill="#8f8eff" rx="2"/>
+              <text x="101" y="210" fill="#444" font-size="11" text-anchor="middle">Minggu 1</text>
+
+              <!-- Minggu 2 (val 20) -->
+              <rect x="165" y="90" width="52" height="100" fill="#8f8eff" rx="2"/>
+              <text x="191" y="210" fill="#444" font-size="11" text-anchor="middle">Minggu 2</text>
+
+              <!-- Minggu 3 (val 32) -->
+              <rect x="255" y="30" width="52" height="160" fill="#8f8eff" rx="2"/>
+              <text x="281" y="210" fill="#444" font-size="11" text-anchor="middle">Minggu 3</text>
+
+              <!-- Minggu 4 (val 30) -->
+              <rect x="345" y="40" width="52" height="150" fill="#8f8eff" rx="2"/>
+              <text x="371" y="210" fill="#444" font-size="11" text-anchor="middle">Minggu 4</text>
+
+              <!-- Minggu 5 (val 25) -->
+              <rect x="435" y="65" width="52" height="125" fill="#8f8eff" rx="2"/>
+              <text x="461" y="210" fill="#444" font-size="11" text-anchor="middle">Minggu 5</text>
+
+              <!-- Minggu 6 (val 33) -->
+              <rect x="525" y="25" width="52" height="165" fill="#8f8eff" rx="2"/>
+              <text x="551" y="210" fill="#444" font-size="11" text-anchor="middle">Minggu 6</text>
+
+              <!-- Minggu 7 (val 32) -->
+              <rect x="615" y="30" width="52" height="160" fill="#8f8eff" rx="2"/>
+              <text x="641" y="210" fill="#444" font-size="11" text-anchor="middle">Minggu 7</text>
+            </svg>
+            
+            <div style="text-align: center; margin-top: 14px; font-size: 0.85rem; color: #555;">
+              <span style="display: inline-block; width: 12px; height: 12px; background-color: #8f8eff; border-radius: 2px; margin-right: 6px; vertical-align: middle;"></span>
+              2026
+            </div>
+          </div>
+        </div>
+
+        <!-- Card: Booking Terbaru -->
+        <div class="chart-panel-card">
+          <h3>Booking Terbaru</h3>
+
+          <div style="overflow-x: auto;">
+            <table style="width: 100%; border-collapse: separate; border-spacing: 0 10px;">
+              <tbody>
+                <!-- Row 1: Batal -->
+                <tr style="background-color: #f7faf8; border-radius: 8px;">
+                  <td style="padding: 12px 14px; display: flex; align-items: center; gap: 12px;">
+                    <span style="width: 24px; height: 24px; border-radius: 50%; background-color: #f8c5c5; display: inline-block;"></span>
+                    <strong>Andi Saputra</strong>
+                  </td>
+                  <td style="padding: 12px 14px;">Lapangan A</td>
+                  <td style="padding: 12px 14px;">02/06/2026</td>
+                  <td style="padding: 12px 14px;">08.00-09.00</td>
+                  <td style="padding: 12px 14px;"><strong>Rp 150.000</strong></td>
+                  <td style="padding: 12px 14px; text-align: right;">
+                    <span class="badge-tag-pill badge-batal">Batal</span>
+                  </td>
+                </tr>
+
+                <!-- Row 2: DP -->
+                <tr style="background-color: #f7faf8; border-radius: 8px;">
+                  <td style="padding: 12px 14px; display: flex; align-items: center; gap: 12px;">
+                    <span style="width: 24px; height: 24px; border-radius: 50%; background-color: #c9c5f8; display: inline-block;"></span>
+                    <strong>Andi Saputra</strong>
+                  </td>
+                  <td style="padding: 12px 14px;">Lapangan A</td>
+                  <td style="padding: 12px 14px;">02/06/2026</td>
+                  <td style="padding: 12px 14px;">08.00-09.00</td>
+                  <td style="padding: 12px 14px;"><strong>Rp 150.000</strong></td>
+                  <td style="padding: 12px 14px; text-align: right;">
+                    <span class="badge-tag-pill badge-dp">DP</span>
+                  </td>
+                </tr>
+
+                <!-- Row 3: Lunas -->
+                <tr style="background-color: #f7faf8; border-radius: 8px;">
+                  <td style="padding: 12px 14px; display: flex; align-items: center; gap: 12px;">
+                    <span style="width: 24px; height: 24px; border-radius: 50%; background-color: #c2eed5; display: inline-block;"></span>
+                    <strong>Andi Saputra</strong>
+                  </td>
+                  <td style="padding: 12px 14px;">Raket</td>
+                  <td style="padding: 12px 14px;">02/06/2026</td>
+                  <td style="padding: 12px 14px;">08.00-09.00</td>
+                  <td style="padding: 12px 14px;"><strong>Rp 15.000</strong></td>
+                  <td style="padding: 12px 14px; text-align: right;">
+                    <span class="badge-tag-pill badge-lunas">Lunas</span>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

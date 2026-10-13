@@ -1984,21 +1984,274 @@ a {
   background-color: #206749;
 }
 
-.history-floating-print-btn {
-  background-color: #8ee0aa;
-  color: #0d251d;
-  font-weight: 700;
-  font-size: 1rem;
-  border: none;
-  padding: 12px;
-  text-align: center;
-  width: 70%;
-  margin: 16px auto 20px;
-  border-radius: 9999px;
-  cursor: pointer;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+/* ==========================================================
+   MODUL PENGELOLA (ADMIN / MANAGER) STYLES
+   ========================================================== */
+.pengelola-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.pengelola-stat-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 18px 22px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.pengelola-stat-card span {
+  font-size: 0.85rem;
+  color: #555555;
+  display: block;
+  margin-bottom: 6px;
+}
+
+.pengelola-stat-card h3 {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #111111;
+  margin-bottom: 4px;
+}
+
+.pengelola-stat-card small {
+  font-size: 0.75rem;
+  color: #00aa4b;
+  font-weight: 600;
   display: block;
 }
+
+/* Charts Containers */
+.chart-panel-card {
+  background-color: #ffffff;
+  border-radius: 14px;
+  padding: 22px 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.chart-panel-card h3 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #15362a;
+  margin-bottom: 18px;
+}
+
+.svg-chart-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+/* Status Badges Summary Row */
+.status-summary-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.status-summary-box {
+  background-color: #ffffff;
+  border-radius: 10px;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  min-width: 160px;
+}
+
+.badge-tag-pill {
+  padding: 4px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.badge-lunas {
+  background-color: #e2f7ea;
+  color: #188a42;
+}
+
+.badge-pending {
+  background-color: #fff6dc;
+  color: #c49117;
+}
+
+.badge-dp {
+  background-color: #ebe9fe;
+  color: #5f52d9;
+}
+
+.badge-batal {
+  background-color: #fde5e5;
+  color: #d93838;
+}
+
+/* Pengelola Table Controls */
+.table-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-pills-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.filter-outline-btn {
+  background-color: #eaf5ee;
+  border: 1.5px solid #66b088;
+  color: #154631;
+  padding: 6px 16px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-add-booking {
+  background-color: #13392a;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 18px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.btn-export-mint {
+  background-color: #8ee0aa;
+  color: #0b221a;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Pengelola Data Table */
+.pengelola-table-container {
+  background-color: #ffffff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+}
+
+.pengelola-data-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.pengelola-data-table th {
+  background-color: #184e37;
+  color: #ffffff;
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.pengelola-data-table td {
+  padding: 12px 14px;
+  font-size: 0.85rem;
+  border-bottom: 1px solid #eef2ef;
+  color: #222222;
+}
+
+.pengelola-data-table tr:hover {
+  background-color: #f8faf8;
+}
+
+.table-action-icons {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+/* Pagination Row */
+.pagination-row {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.pagination-btn {
+  background-color: #a0dcba;
+  color: #0e3023;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.pagination-btn.active {
+  background-color: #0e3023;
+  color: #ffffff;
+}
+
+/* Dashed Add Card */
+.dashed-add-card {
+  border: 2px dashed #4e5f57;
+  border-radius: 16px;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  background-color: transparent;
+  color: #203b30;
+  font-size: 1.15rem;
+  font-weight: 700;
+  transition: all 0.2s;
+  padding: 20px;
+}
+
+.dashed-add-card:hover {
+  background-color: rgba(255, 255, 255, 0.6);
+  border-color: #184e37;
+  transform: translateY(-2px);
+}
+
+.pengelola-search-bar {
+  display: flex;
+  align-items: center;
+  position: relative;
+  max-width: 480px;
+}
+
+.pengelola-search-bar input {
+  width: 100%;
+  border: 1.5px solid #233e33;
+  border-radius: 6px;
+  padding: 8px 36px 8px 12px;
+  font-size: 0.9rem;
+  outline: none;
+  background-color: #ffffff;
+}
+
+.pengelola-search-bar .search-icon-abs {
+  position: absolute;
+  right: 12px;
+  color: #3b82f6;
+  font-size: 1rem;
+}
+
 
 @media (max-width: 992px) {
   .categories-grid,

@@ -42,30 +42,55 @@ Aplikasi ini dirancang dengan arsitektur **3-Tier** (*Presentation, Application,
    - Sidebar navigasi (*Dashboard, Booking, Favorite, History, Logout*).
    - Profil pengguna (*Dani Raja Hutan*), pengaturan identitas diri, dan kelola email.
 
+### 🏢 Fitur Sisi Pengelola Lapangan (Budi)
+10. **Dashboard Pengelola (`pengelola-dashboard.html`)**
+    - 3 Kartu statistik ringkas (*Total booking*, *Pendapatan hari ini*, *Lapangan aktif*).
+    - Diagram batang mingguan (*Pendapatan Mingguan 2026*).
+    - Tabel ringkas *Booking Terbaru* dengan badge status pembayaran (*Lunas*, *DP*, *Batal*).
+11. **Kelola Jadwal dan Booking (`pengelola-booking.html`)**
+    - Ringkasan 4 badge kuantitas status: *Lunas (20)*, *Pending (6)*, *DP (3)*, *Batal (2)*.
+    - Filter tanggal, filter status, tombol *+ Tambah Booking*, dan *Export*.
+    - Tabel data pemesanan lengkap dengan aksi edit ✏️ dan hapus 🗑️ serta penomoran halaman (pagination).
+12. **Kelola Lapangan dan Fasilitas (`pengelola-lapangan.html`)**
+    - Pencarian lapangan, kartu venue aktif dengan badge status dan aksi edit.
+    - Kartu dashed `+ Tambah lapangan` untuk penambahan fasilitas baru.
+13. **Kelola Peralatan Olahraga (`pengelola-peralatan.html`)**
+    - Manajemen alat olahraga (*Bola Futsal, Raket Badminton*) dengan tombol edit.
+    - Kartu dashed `+ Tambah Peralatan`.
+14. **Laporan Pendapatan (`pengelola-pendapatan.html`)**
+    - 3 Ringkasan kartu: *Total Pendapatan (Rp 13,95jt)*, *Total Booking (138)*, *Pembatalan (4)*.
+    - Diagram garis komparasi multi-tahun (*Perbandingan 2024 vs 2025*).
+    - Tabel rincian pendapatan berdasarkan fasilitas dan tombol *Export PDF*.
+
 ---
 
 ## 📂 Struktur Direktori Proyek
 
 ```text
 SIBORA/
-├── index.html           # Halaman Utama (Home)
-├── login.html           # Halaman Login
-├── register.html        # Halaman Pendaftaran Akun
-├── lapangan.html        # Katalog & Pencarian Lapangan
-├── peralatan.html       # Katalog & Sewa Peralatan (dengan Modal Counter)
-├── jadwal.html          # Jadwal Mingguan Interaktif Lapangan
-├── booking.html         # Form Data Penyewa & Sesi Booking
-├── pembayaran.html      # Konfirmasi Pembayaran & Modal Berhasil
-├── riwayat.html         # Riwayat Transaksi & Cetak Struk
-├── dashboard.html       # Dashboard Profil Pengguna
+├── index.html                  # Halaman Utama (Home)
+├── login.html                  # Halaman Login (Role-based redirect)
+├── register.html               # Halaman Pendaftaran Akun
+├── lapangan.html               # Katalog & Pencarian Lapangan
+├── peralatan.html              # Katalog & Sewa Peralatan (dengan Modal Counter)
+├── jadwal.html                 # Jadwal Mingguan Interaktif Lapangan
+├── booking.html                # Form Data Penyewa & Sesi Booking
+├── pembayaran.html             # Konfirmasi Pembayaran & Modal Berhasil
+├── riwayat.html                # Riwayat Transaksi & Cetak Struk
+├── dashboard.html              # Dashboard Profil Pelanggan (Dani)
+├── pengelola-dashboard.html    # Dashboard Pengelola (Budi)
+├── pengelola-booking.html      # Kelola Jadwal dan Booking Pengelola
+├── pengelola-lapangan.html     # Kelola Lapangan & Fasilitas Pengelola
+├── pengelola-peralatan.html    # Kelola Peralatan Pengelola
+├── pengelola-pendapatan.html   # Laporan Pendapatan Pengelola
 ├── css/
-│   └── style.css        # Desain terpadu (Tema Hijau Tua, Glassmorphism, Responsive)
+│   └── style.css               # Desain terpadu (Tema Hijau Tua, Glassmorphism, Responsive)
 ├── js/
-│   └── app.js           # Logika interaktif frontend (Filter, Validasi, Modal, Storage)
+│   └── app.js                  # Logika interaktif frontend (Filter, Validasi, Modal, Storage)
 ├── assets/
-│   └── images/          # Background tekstur rumput & foto venue realistis
-├── .gitignore           # File pengabaian git
-└── README.md            # Dokumentasi proyek
+│   └── images/                 # Background tekstur rumput & foto venue realistis
+├── .gitignore                  # File pengabaian git
+└── README.md                   # Dokumentasi proyek
 ```
 
 ---
@@ -74,12 +99,14 @@ SIBORA/
 
 Sistem frontend telah dilengkapi dengan akun bawaan untuk kemudahan testing alur:
 
-| Username | Password | Keterangan |
-| :--- | :--- | :--- |
-| **`admin`** | **`admin123`** | Akun Admin Demo |
-| **`user`** | **`123456`** | Akun Pengguna Demo |
-| **`dani`** | **`123456`** | Akun Profil Dani Demo |
-| **`sibora`** | **`sibora2026`** | Akun Cadangan |
+| Username | Password | Peran (Role) | Keterangan & Pengalihan Halaman |
+| :--- | :--- | :--- | :--- |
+| **`budi`** | **`123456`** | Pengelola | Masuk langsung ke `pengelola-dashboard.html` |
+| **`pengelola`**| **`pengelola123`**| Pengelola | Masuk langsung ke `pengelola-dashboard.html` |
+| **`dani`** | **`123456`** | Pelanggan | Masuk langsung ke `dashboard.html` |
+| **`user`** | **`123456`** | Pelanggan | Masuk langsung ke `dashboard.html` |
+| **`admin`** | **`admin123`** | Admin | Akun Super Admin |
+| **`sibora`** | **`sibora2026`** | Admin | Akun Cadangan |
 
 > *Catatan:* Anda juga dapat mendaftar akun baru lewat [register.html](register.html). Akun baru otomatis disimpan ke `localStorage` browser dan dapat digunakan langsung untuk login.
 

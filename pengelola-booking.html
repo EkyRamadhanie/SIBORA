@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelola Jadwal dan Booking - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #ebf5ee;">
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar Kiri Pengelola -->
+    <aside class="dashboard-sidebar">
+      <a href="index.html" class="brand-logo">SIBORA</a>
+
+      <nav class="sidebar-menu">
+        <a href="pengelola-dashboard.html" class="sidebar-link">
+          <span>⊞</span> Dashboard
+        </a>
+        <a href="pengelola-booking.html" class="sidebar-link active">
+          <span>📅</span> Booking
+        </a>
+        <a href="pengelola-lapangan.html" class="sidebar-link">
+          <span>⚽</span> Lapangan
+        </a>
+        <a href="pengelola-peralatan.html" class="sidebar-link">
+          <span>🏀</span> Peralatan
+        </a>
+        <a href="pengelola-pendapatan.html" class="sidebar-link">
+          <span>📄</span> Pendapatan
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom-links">
+        <a href="index.html" class="sidebar-link">
+          <span>🏠</span> Kembali ke Home
+        </a>
+        <a href="login.html" class="sidebar-link" id="btnSidebarLogout">
+          <span>🚪</span> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Konten Kanan -->
+    <main class="dashboard-main-content">
+      
+      <!-- Topbar Header -->
+      <header class="dashboard-topbar" style="background-color: transparent; border: none; padding: 24px 36px 10px;">
+        <div>
+          <h1 style="font-size: 2rem; font-weight: 700; color: #143529;">Kelola Jadwal dan Booking</h1>
+        </div>
+
+        <div class="user-top-profile">
+          <div class="user-text-right">
+            <h4>Budi</h4>
+            <p>Pengelola</p>
+          </div>
+          <div class="user-big-avatar" style="background-color: #2b7a67;">
+            👤
+          </div>
+        </div>
+      </header>
+
+      <!-- Body Section -->
+      <div style="padding: 10px 36px 40px;">
+        
+        <!-- Status Badges Summary Row -->
+        <div class="status-summary-row">
+          
+          <div class="status-summary-box">
+            <span class="badge-tag-pill badge-lunas">Lunas</span>
+            <strong style="font-size: 1.6rem; color: #111;">20</strong>
+          </div>
+
+          <div class="status-summary-box">
+            <span class="badge-tag-pill badge-pending">Pending</span>
+            <strong style="font-size: 1.6rem; color: #111;">6</strong>
+          </div>
+
+          <div class="status-summary-box">
+            <span class="badge-tag-pill badge-dp">DP</span>
+            <strong style="font-size: 1.6rem; color: #111;">3</strong>
+          </div>
+
+          <div class="status-summary-box">
+            <span class="badge-tag-pill badge-batal">Batal</span>
+            <strong style="font-size: 1.6rem; color: #111;">2</strong>
+          </div>
+
+        </div>
+
+        <!-- Filter & Action Controls -->
+        <div class="table-filter-bar">
+          <div class="filter-pills-left">
+            <button type="button" class="filter-outline-btn">Semua Lapangan</button>
+            <button type="button" class="filter-outline-btn">Semua Status</button>
+            <button type="button" class="filter-outline-btn">2 Juni 2026</button>
+          </div>
+
+          <div style="display: flex; gap: 10px;">
+            <button type="button" class="btn-add-booking" onclick="alert('Buka modal tambah booking manual.')">+ Tambah Booking</button>
+            <button type="button" class="btn-export-mint" onclick="alert('Export data booking (CSV / Excel).')">Export</button>
+          </div>
+        </div>
+
+        <!-- Data Table Container -->
+        <div class="pengelola-table-container">
+          <table class="pengelola-data-table">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Pelanggan</th>
+                <th>Lapangan</th>
+                <th>Tanggal</th>
+                <th>Waktu</th>
+                <th>Durasi</th>
+                <th>Total</th>
+                <th>Status bayar</th>
+                <th style="text-align: center;">Aksi</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+              <!-- Row #B001 -->
+              <tr>
+                <td><strong>#B001</strong></td>
+                <td>Andi Saputra</td>
+                <td>Futsal A</td>
+                <td>02/06/2026</td>
+                <td>08.00-09.00</td>
+                <td>1 jam</td>
+                <td>Rp 150.000</td>
+                <td><span class="badge-tag-pill badge-lunas">Lunas</span></td>
+                <td style="text-align: center;">
+                  <div class="table-action-icons" style="justify-content: center;">
+                    <span title="Edit">✏️</span>
+                    <span title="Hapus">🗑️</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row #B002 -->
+              <tr>
+                <td><strong>#B002</strong></td>
+                <td>Andi Saputra</td>
+                <td>Futsal A</td>
+                <td>02/06/2026</td>
+                <td>08.00-09.00</td>
+                <td>1 jam</td>
+                <td>Rp 150.000</td>
+                <td><span class="badge-tag-pill badge-pending">Pending</span></td>
+                <td style="text-align: center;">
+                  <div class="table-action-icons" style="justify-content: center;">
+                    <span title="Edit">✏️</span>
+                    <span title="Hapus">🗑️</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row #B003 -->
+              <tr>
+                <td><strong>#B003</strong></td>
+                <td>Andi Saputra</td>
+                <td>Futsal A</td>
+                <td>02/06/2026</td>
+                <td>08.00-09.00</td>
+                <td>1 jam</td>
+                <td>Rp 150.000</td>
+                <td><span class="badge-tag-pill badge-batal">Batal</span></td>
+                <td style="text-align: center;">
+                  <div class="table-action-icons" style="justify-content: center;">
+                    <span title="Edit">✏️</span>
+                    <span title="Hapus">🗑️</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row #B004 -->
+              <tr>
+                <td><strong>#B004</strong></td>
+                <td>Andi Saputra</td>
+                <td>Futsal A</td>
+                <td>02/06/2026</td>
+                <td>08.00-09.00</td>
+                <td>1 jam</td>
+                <td>Rp 150.000</td>
+                <td><span class="badge-tag-pill badge-dp">DP</span></td>
+                <td style="text-align: center;">
+                  <div class="table-action-icons" style="justify-content: center;">
+                    <span title="Edit">✏️</span>
+                    <span title="Hapus">🗑️</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row #B005 -->
+              <tr>
+                <td><strong>#B005</strong></td>
+                <td>Andi Saputra</td>
+                <td>Futsal A</td>
+                <td>02/06/2026</td>
+                <td>08.00-09.00</td>
+                <td>1 jam</td>
+                <td>Rp 150.000</td>
+                <td><span class="badge-tag-pill badge-lunas">Lunas</span></td>
+                <td style="text-align: center;">
+                  <div class="table-action-icons" style="justify-content: center;">
+                    <span title="Edit">✏️</span>
+                    <span title="Hapus">🗑️</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row #B006 -->
+              <tr>
+                <td><strong>#B006</strong></td>
+                <td>Andi Saputra</td>
+                <td>Futsal A</td>
+                <td>02/06/2026</td>
+                <td>08.00-09.00</td>
+                <td>1 jam</td>
+                <td>Rp 150.000</td>
+                <td><span class="badge-tag-pill badge-lunas">Lunas</span></td>
+                <td style="text-align: center;">
+                  <div class="table-action-icons" style="justify-content: center;">
+                    <span title="Edit">✏️</span>
+                    <span title="Hapus">🗑️</span>
+                  </div>
+                </td>
+              </tr>
+
+              <!-- Row #B007 -->
+              <tr>
+                <td><strong>#B007</strong></td>
+                <td>Andi Saputra</td>
+                <td>Futsal A</td>
+                <td>02/06/2026</td>
+                <td>08.00-09.00</td>
+                <td>1 jam</td>
+                <td>Rp 150.000</td>
+                <td><span class="badge-tag-pill badge-pending">Pending</span></td>
+                <td style="text-align: center;">
+                  <div class="table-action-icons" style="justify-content: center;">
+                    <span title="Edit">✏️</span>
+                    <span title="Hapus">🗑️</span>
+                  </div>
+                </td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-row">
+          <button type="button" class="pagination-btn">&lt;&lt; Prev</button>
+          <button type="button" class="pagination-btn active">1</button>
+          <button type="button" class="pagination-btn">2</button>
+          <button type="button" class="pagination-btn">Next &gt;&gt;</button>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

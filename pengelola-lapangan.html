@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelola Lapangan dan Fasilitas - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #ebf5ee;">
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar Kiri Pengelola -->
+    <aside class="dashboard-sidebar">
+      <a href="index.html" class="brand-logo">SIBORA</a>
+
+      <nav class="sidebar-menu">
+        <a href="pengelola-dashboard.html" class="sidebar-link">
+          <span>⊞</span> Dashboard
+        </a>
+        <a href="pengelola-booking.html" class="sidebar-link">
+          <span>📅</span> Booking
+        </a>
+        <a href="pengelola-lapangan.html" class="sidebar-link active">
+          <span>⚽</span> Lapangan
+        </a>
+        <a href="pengelola-peralatan.html" class="sidebar-link">
+          <span>🏀</span> Peralatan
+        </a>
+        <a href="pengelola-pendapatan.html" class="sidebar-link">
+          <span>📄</span> Pendapatan
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom-links">
+        <a href="index.html" class="sidebar-link">
+          <span>🏠</span> Kembali ke Home
+        </a>
+        <a href="login.html" class="sidebar-link" id="btnSidebarLogout">
+          <span>🚪</span> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Konten Kanan -->
+    <main class="dashboard-main-content">
+      
+      <!-- Topbar Header -->
+      <header class="dashboard-topbar" style="background-color: transparent; border: none; padding: 24px 36px 10px;">
+        <div>
+          <h1 style="font-size: 2rem; font-weight: 700; color: #143529;">Kelola Lapangan dan Fasilitas</h1>
+        </div>
+
+        <div class="user-top-profile">
+          <div class="user-text-right">
+            <h4>Budi</h4>
+            <p>Pengelola</p>
+          </div>
+          <div class="user-big-avatar" style="background-color: #2b7a67;">
+            👤
+          </div>
+        </div>
+      </header>
+
+      <!-- Body Section -->
+      <div style="padding: 10px 36px 40px;">
+        
+        <!-- Search & Add Row -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; gap: 16px; flex-wrap: wrap;">
+          <div class="pengelola-search-bar" style="flex: 1; max-width: 480px;">
+            <input type="text" placeholder="Search">
+            <span class="search-icon-abs">🔍</span>
+          </div>
+
+          <button type="button" class="btn-add-booking" onclick="alert('Buka modal tambah lapangan baru.')">+ Tambah Lapangan</button>
+        </div>
+
+        <!-- Cards Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px;">
+          
+          <!-- Card 1: Q Premier Mini Soccer -->
+          <article class="venue-card" style="box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);">
+            <div class="venue-image-wrapper" style="height: 160px;">
+              <img src="assets/images/venue_qpremier.jpg" alt="Q Premier Mini Soccer">
+            </div>
+            <div class="venue-info-body">
+              <h3 class="venue-name" style="font-size: 1.2rem;">Q Premier Mini Soccer</h3>
+              <p class="venue-sport-type" style="color: #666; margin-bottom: 12px;">Outdoor</p>
+              
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                <span style="font-size: 1.15rem; font-weight: 800; color: #00aa4b;">Rp 150.000/jam</span>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                  <span class="badge-tag-pill badge-lunas" style="font-size: 0.8rem; padding: 4px 12px;">Aktif</span>
+                  <a href="#" style="font-size: 0.9rem; font-weight: 700; color: #111;" onclick="alert('Buka form edit lapangan.')">Edit</a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Dashed Add Field -->
+          <div class="dashed-add-card" onclick="alert('Formulir tambah lapangan baru dibuka.')">
+            <span style="font-size: 2.2rem; display: block; margin-bottom: 8px;">+</span>
+            Tambah lapangan
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

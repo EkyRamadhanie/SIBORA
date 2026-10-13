@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kelola Peralatan Olahraga - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body style="background-color: #ebf5ee;">
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar Kiri Pengelola -->
+    <aside class="dashboard-sidebar">
+      <a href="index.html" class="brand-logo">SIBORA</a>
+
+      <nav class="sidebar-menu">
+        <a href="pengelola-dashboard.html" class="sidebar-link">
+          <span>⊞</span> Dashboard
+        </a>
+        <a href="pengelola-booking.html" class="sidebar-link">
+          <span>📅</span> Booking
+        </a>
+        <a href="pengelola-lapangan.html" class="sidebar-link">
+          <span>⚽</span> Lapangan
+        </a>
+        <a href="pengelola-peralatan.html" class="sidebar-link active">
+          <span>🏀</span> Peralatan
+        </a>
+        <a href="pengelola-pendapatan.html" class="sidebar-link">
+          <span>📄</span> Pendapatan
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom-links">
+        <a href="index.html" class="sidebar-link">
+          <span>🏠</span> Kembali ke Home
+        </a>
+        <a href="login.html" class="sidebar-link" id="btnSidebarLogout">
+          <span>🚪</span> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Konten Kanan -->
+    <main class="dashboard-main-content">
+      
+      <!-- Topbar Header -->
+      <header class="dashboard-topbar" style="background-color: transparent; border: none; padding: 24px 36px 10px;">
+        <div>
+          <h1 style="font-size: 2rem; font-weight: 700; color: #143529;">Kelola Peralatan Olahraga</h1>
+        </div>
+
+        <div class="user-top-profile">
+          <div class="user-text-right">
+            <h4>Budi</h4>
+            <p>Pengelola</p>
+          </div>
+          <div class="user-big-avatar" style="background-color: #2b7a67;">
+            👤
+          </div>
+        </div>
+      </header>
+
+      <!-- Body Section -->
+      <div style="padding: 10px 36px 40px;">
+        
+        <!-- Search & Add Row -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 26px; gap: 16px; flex-wrap: wrap;">
+          <div class="pengelola-search-bar" style="flex: 1; max-width: 480px;">
+            <input type="text" placeholder="Search">
+            <span class="search-icon-abs">🔍</span>
+          </div>
+
+          <button type="button" class="btn-add-booking" onclick="alert('Formulir tambah peralatan baru dibuka.')">+ Tambah Peralatan</button>
+        </div>
+
+        <!-- Cards Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px;">
+          
+          <!-- Card 1: Bola Futsal -->
+          <article class="equipment-card" style="box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);">
+            <div class="equipment-visual-top" style="background-color: #e2e8e4;">
+              <span title="Bola Futsal">⚽</span>
+            </div>
+            <div class="equipment-details-bottom">
+              <h3 class="equipment-title">Bola Futsal</h3>
+              <p class="equipment-spec">Ukuran 4 • Merk Mikasa</p>
+              <p class="equipment-price">Rp 15.000/jam</p>
+              <button type="button" class="btn-venue-booking" onclick="alert('Form edit Bola Futsal dibuka.')">Edit</button>
+            </div>
+          </article>
+
+          <!-- Card 2: Raket Badminton -->
+          <article class="equipment-card" style="box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);">
+            <div class="equipment-visual-top" style="background-color: #e2e8e4;">
+              <span title="Raket Badminton">🏸</span>
+            </div>
+            <div class="equipment-details-bottom">
+              <h3 class="equipment-title">Raket Badminton</h3>
+              <p class="equipment-spec">Yonex Nanoray • Single</p>
+              <p class="equipment-price">Rp 15.000/jam</p>
+              <button type="button" class="btn-venue-booking" onclick="alert('Form edit Raket Badminton dibuka.')">Edit</button>
+            </div>
+          </article>
+
+          <!-- Card 3: Dashed Add Item -->
+          <div class="dashed-add-card" onclick="alert('Formulir tambah peralatan baru dibuka.')">
+            <span style="font-size: 2.2rem; display: block; margin-bottom: 8px;">+</span>
+            Tambah Peralatan
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
