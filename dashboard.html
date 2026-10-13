@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard User - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar Kiri -->
+    <aside class="dashboard-sidebar">
+      <a href="index.html" class="brand-logo">SIBORA</a>
+
+      <nav class="sidebar-menu">
+        <a href="dashboard.html" class="sidebar-link active">
+          <span>⊞</span> Dashboard
+        </a>
+        <a href="lapangan.html" class="sidebar-link">
+          <span>📅</span> Booking
+        </a>
+        <a href="lapangan.html" class="sidebar-link">
+          <span>⚽</span> Favorite
+        </a>
+        <a href="riwayat.html" class="sidebar-link">
+          <span>📄</span> History
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom-links">
+        <a href="index.html" class="sidebar-link">
+          <span>🏠</span> Kembali ke Home
+        </a>
+        <a href="login.html" class="sidebar-link" id="btnSidebarLogout">
+          <span>🚪</span> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Konten Utama Kanan -->
+    <main class="dashboard-main-content">
+      
+      <!-- Topbar Header -->
+      <header class="dashboard-topbar">
+        <div class="welcome-info">
+          <h1>Welcome,<br>Dani</h1>
+          <p>Sunday, 08 Oct 2026</p>
+        </div>
+
+        <div class="user-top-profile">
+          <div class="user-text-right">
+            <h4>Dani</h4>
+            <p>User</p>
+          </div>
+          <div class="user-big-avatar">
+            👤
+          </div>
+        </div>
+      </header>
+
+      <!-- Area Form Profil Dani -->
+      <section class="dashboard-body-card">
+        
+        <!-- Header Profil & Foto -->
+        <div class="profile-card-header">
+          <div class="profile-avatar-row">
+            <img src="assets/images/venue_qpremier.jpg" alt="Dani Raja Hutan" class="profile-avatar-img">
+            <div class="profile-name-area">
+              <h3>Dani Raja Hutan</h3>
+              <p>danitheforest@gmail.com</p>
+            </div>
+          </div>
+          <button type="button" class="btn-edit-profile" onclick="alert('Mode edit profil diaktifkan!')">Edit</button>
+        </div>
+
+        <!-- Form Fields Grid -->
+        <div class="profile-fields-grid">
+          
+          <div class="profile-field-item">
+            <label>Full Name</label>
+            <input type="text" class="profile-field-input" value="Dani Raja Hutan" placeholder="Your Full Name">
+          </div>
+
+          <div class="profile-field-item">
+            <label>Nick Name</label>
+            <input type="text" class="profile-field-input" value="Dani" placeholder="Your Nick Name">
+          </div>
+
+          <div class="profile-field-item">
+            <label>Gender</label>
+            <input type="text" class="profile-field-input" value="Laki-laki" placeholder="Your Gender">
+          </div>
+
+          <div class="profile-field-item">
+            <label>Country</label>
+            <input type="text" class="profile-field-input" value="Indonesia" placeholder="Your Country">
+          </div>
+
+          <div class="profile-field-item">
+            <label>Language</label>
+            <input type="text" class="profile-field-input" value="Indonesia (ID)" placeholder="Your Language">
+          </div>
+
+          <div class="profile-field-item">
+            <label>Time Zone</label>
+            <input type="text" class="profile-field-input" value="Asia/Makassar (WITA)" placeholder="Your Time Zone">
+          </div>
+
+        </div>
+
+        <!-- Kelola Email -->
+        <div class="email-manage-box">
+          <label style="font-size: 1rem; font-weight: 700; color: #143529;">My email Address</label>
+          
+          <div class="email-item-row">
+            <div class="email-icon-box">
+              ✉
+            </div>
+            <div>
+              <strong style="display: block; font-size: 0.95rem; color: #111111;">danitheforest@gmail.com</strong>
+              <small style="color: #888888; font-size: 0.8rem;">1 month ago</small>
+            </div>
+          </div>
+
+          <button type="button" class="btn-add-email" onclick="alert('Form penambahan email alternatif dibuka.')">+Add Email Address</button>
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

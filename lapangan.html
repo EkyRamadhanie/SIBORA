@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Katalog Lapangan - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="bg-sports-cover">
+
+  <!-- Navbar -->
+  <header class="sibora-navbar">
+    <a href="index.html" class="brand-logo">SIBORA</a>
+    <div class="nav-group">
+      <a href="lapangan.html" class="nav-pill active">Lapangan</a>
+      <a href="peralatan.html" class="nav-pill">Peralatan</a>
+      <a href="jadwal.html" class="nav-pill">Cek Jadwal</a>
+      <a href="login.html" class="nav-pill">Log Out</a>
+      <div class="nav-avatar" title="Profil Pengguna">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filter & Search Panel -->
+  <div class="lapangan-hero-panel">
+    <h2 class="lapangan-hero-title">Temukan lapangan olahraga terbaik untuk anda</h2>
+    
+    <div class="search-bar-row">
+      <input type="text" id="searchLapanganInput" class="search-input-field" placeholder="Cari jenis olahraga..">
+      <button type="button" id="btnResetSearch" class="btn-filter-gray">Semua</button>
+      <button type="button" id="btnSearchLapangan" class="btn-search-bright">Cari</button>
+    </div>
+
+    <!-- Category Pills -->
+    <div class="category-tags-row">
+      <button type="button" class="category-filter-pill active" data-category="all">Semua</button>
+      <button type="button" class="category-filter-pill" data-category="futsal">Futsal</button>
+      <button type="button" class="category-filter-pill" data-category="badminton">Badminton</button>
+      <button type="button" class="category-filter-pill" data-category="basket">Basket</button>
+      <button type="button" class="category-filter-pill" data-category="padel">Padel</button>
+      <button type="button" class="category-filter-pill" data-category="tenis">Tenis</button>
+    </div>
+  </div>
+
+  <!-- Venue Cards Grid -->
+  <main class="venues-container">
+    <div class="venues-grid">
+      
+      <!-- Card 1: Q Premier Mini Soccer -->
+      <article class="venue-card" data-category="futsal">
+        <div class="venue-image-wrapper">
+          <img src="assets/images/venue_qpremier.jpg" alt="Q Premier Mini Soccer" loading="lazy">
+        </div>
+        <div class="venue-info-body">
+          <h3 class="venue-name">Q Premier Mini Soccer</h3>
+          <p class="venue-sport-type">Futsal • Outdoor</p>
+          <p class="venue-location">📍 Q Mall, Banjarbaru</p>
+          <div class="venue-tags-row">
+            <span class="venue-badge-tag">Rumput Sintetis</span>
+            <span class="venue-badge-tag">Parkir</span>
+            <span class="venue-badge-tag">Parkir</span>
+          </div>
+          <p class="venue-price-text">Rp 150.000/jam</p>
+          <button type="button" class="btn-venue-booking btn-trigger-booking">Lihat & Booking</button>
+        </div>
+      </article>
+
+      <!-- Card 2: Hedera Padel Club -->
+      <article class="venue-card" data-category="padel">
+        <div class="venue-image-wrapper">
+          <img src="assets/images/venue_hedera.jpg" alt="Hedera Padel Club" loading="lazy">
+        </div>
+        <div class="venue-info-body">
+          <h3 class="venue-name">Hedera Padel Club</h3>
+          <p class="venue-sport-type">Padel • Indoor</p>
+          <p class="venue-location">📍 Banjarbaru</p>
+          <div class="venue-tags-row">
+            <span class="venue-badge-tag">Karpet Padel</span>
+            <span class="venue-badge-tag">Pinjam Raket</span>
+          </div>
+          <p class="venue-price-text">Rp 250.000/jam</p>
+          <button type="button" class="btn-venue-booking btn-trigger-booking">Lihat & Booking</button>
+        </div>
+      </article>
+
+      <!-- Card 3: Orix Sports Center -->
+      <article class="venue-card" data-category="basket futsal">
+        <div class="venue-image-wrapper">
+          <img src="assets/images/venue_orix.jpg" alt="Orix Sports Center" loading="lazy">
+        </div>
+        <div class="venue-info-body">
+          <h3 class="venue-name">Orix Sports Center</h3>
+          <p class="venue-sport-type">Basket • Indoor & Outdoor</p>
+          <p class="venue-sport-type" style="margin-bottom: 8px;">Futsal • Indoor & Rumput Sintetis</p>
+          <p class="venue-location">📍 Banjarbaru Utara</p>
+          <div class="venue-tags-row">
+            <span class="venue-badge-tag">Tribun</span>
+            <span class="venue-badge-tag">Loker</span>
+          </div>
+          <p class="venue-price-text">Rp 150.000/jam</p>
+          <button type="button" class="btn-venue-booking btn-trigger-booking">Lihat & Booking</button>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+
+  <!-- Modal Pop-up Booking Sebelum Login (Sesuai Desain Pengguna) -->
+  <div id="bookingLoginModal" class="modal-overlay">
+    <div class="modal-booking-card">
+      <div class="modal-red-header">
+        Untuk lanjut proses booking anda harus login!
+        <button type="button" class="modal-close-btn" id="btnCloseModal" title="Tutup">&times;</button>
+      </div>
+      
+      <div class="login-split-card" style="min-height: 380px;">
+        <!-- Left Branding & Sports Cluster -->
+        <div class="login-left-brand" style="padding: 30px 24px;">
+          <div class="floating-sports-cluster" style="width: 160px; height: 140px; margin-bottom: 16px;">
+            <span class="cluster-item ball-basket" style="font-size: 2.8rem; top: 0; left: 10px;">🏀</span>
+            <span class="cluster-item ball-tennis" style="font-size: 1.8rem; top: 10px; right: 30px;">🎾</span>
+            <span class="cluster-item ball-soccer" style="font-size: 3.8rem; bottom: 0; left: 40px;">⚽</span>
+            <span class="cluster-item racket-shuttle" style="font-size: 2.5rem; bottom: 15px; right: 5px;">🏸</span>
+          </div>
+          <h2 class="brand-text-large" style="font-size: 1.9rem;">SIBORA</h2>
+          <p class="brand-text-sub" style="font-size: 0.85rem;">Sistem Booking Fasilitas Olahraga</p>
+        </div>
+
+        <!-- Right Form -->
+        <div class="login-right-form" style="padding: 32px 30px;">
+          <!-- Banner Error Merah Sesuai Contoh Gambar -->
+          <div id="modalErrorBanner" class="alert-error-banner">
+            Username atau Password Salah !! Silahkan isi ulang
+          </div>
+
+          <h2 class="auth-form-title" style="font-size: 1.9rem; margin-bottom: 20px;">Login</h2>
+          
+          <form id="modalLoginForm">
+            <div class="form-field" style="margin-bottom: 16px;">
+              <label for="modalUsername" class="form-label">Username</label>
+              <input type="text" id="modalUsername" class="form-input" placeholder="Masukkan username" required autocomplete="username">
+            </div>
+
+            <div class="form-field" style="margin-bottom: 16px;">
+              <label for="modalPassword" class="form-label">Password</label>
+              <input type="password" id="modalPassword" class="form-input" placeholder="Masukkan kata sandi" required autocomplete="current-password">
+            </div>
+
+            <a href="register.html" class="auth-helper-link" style="margin: 6px 0 16px;">Belum mempunyai akun? Klik disini untuk register</a>
+
+            <div style="display: flex; justify-content: flex-end;">
+              <button type="submit" class="btn-auth-submit" style="padding: 8px 26px;">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

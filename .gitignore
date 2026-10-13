@@ -1,0 +1,16 @@
+# OS Metadata
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor & IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Node / Scratch (jika nanti ada build tools)
+node_modules/
+dist/
+build/
+*.log
