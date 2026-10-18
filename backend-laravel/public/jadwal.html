@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cek Jadwal Lapangan - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css?v=jadwal-ipad-fix-v9">
+</head>
+<body class="bg-sports-cover">
+
+  <!-- Navbar -->
+  <header class="sibora-navbar">
+    <a href="index.html" class="brand-logo">SIBORA</a>
+    <div class="nav-group" id="publicNavMenu">
+      <a href="lapangan.html" class="nav-pill">Lapangan</a>
+      <a href="peralatan.html" class="nav-pill">Peralatan</a>
+      <a href="jadwal.html" class="nav-pill active">Cek Jadwal</a>
+      <a href="login.html" class="nav-pill" data-nav-action="login">Login</a>
+    </div>
+    <button type="button" class="public-mobile-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="publicNavMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Schedule Board Container -->
+  <main style="padding: 10px 20px; flex: 1; display: flex; align-items: center; justify-content: center;">
+    <div class="jadwal-main-board">
+      
+      <!-- Left: Venue Selector List -->
+      <aside class="venue-selector-list">
+        <div class="schedule-venue-search-panel">
+          <label for="scheduleVenueSearch">Cari lapangan</label>
+          <input id="scheduleVenueSearch" type="search" placeholder="Nama atau lokasi lapangan..." autocomplete="off">
+          <p id="scheduleVenueSearchCount" aria-live="polite">Memuat daftar lapangan...</p>
+        </div>
+        <div class="schedule-venue-results" id="scheduleVenueResults">
+          <p class="schedule-venue-empty">Memuat daftar lapangan...</p>
+        </div>
+      </aside>
+
+      <!-- Right: Schedule Timetable Grid -->
+      <div class="schedule-table-card">
+        <div class="schedule-controls">
+          <div class="schedule-controls-copy">
+            <h2>Jadwal Lapangan</h2>
+            <p id="scheduleSelectedSummary">Cari lapangan dan pilih tanggal untuk melihat jam yang masih tersedia.</p>
+          </div>
+          <label class="schedule-date-field" for="apiScheduleDate">
+            <span>Tanggal booking</span>
+            <input id="apiScheduleDate" type="date" required>
+          </label>
+        </div>
+        <table class="schedule-grid-table">
+          <thead>
+            <tr>
+              <th style="width: 100px;">Jam</th>
+              <th>Status</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td colspan="3" class="schedule-empty-state">Pilih tanggal terlebih dahulu untuk melihat jam dan ketersediaan.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  <!-- Modal Pop-up Booking Sebelum Login (Sesuai Desain Pengguna) -->
+  <div id="bookingLoginModal" class="modal-overlay">
+    <div class="modal-booking-card">
+      <div class="modal-red-header">
+        Untuk lanjut proses booking anda harus login!
+        <button type="button" class="modal-close-btn" id="btnCloseModal" title="Tutup">&times;</button>
+      </div>
+      
+      <div class="login-split-card" style="min-height: 380px;">
+        <!-- Left Branding & Sports Cluster -->
+        <div class="login-left-brand" style="padding: 30px 24px;">
+          <div class="floating-sports-cluster" style="width: 160px; height: 140px; margin-bottom: 16px;">
+            <span class="cluster-item ball-basket" style="font-size: 2.8rem; top: 0; left: 10px;">🏀</span>
+            <span class="cluster-item ball-tennis" style="font-size: 1.8rem; top: 10px; right: 30px;">🎾</span>
+            <span class="cluster-item ball-soccer" style="font-size: 3.8rem; bottom: 0; left: 40px;">⚽</span>
+            <span class="cluster-item racket-shuttle" style="font-size: 2.5rem; bottom: 15px; right: 5px;">🏸</span>
+          </div>
+          <h2 class="brand-text-large" style="font-size: 1.9rem;">SIBORA</h2>
+          <p class="brand-text-sub" style="font-size: 0.85rem;">Sistem Booking Fasilitas Olahraga</p>
+        </div>
+
+        <!-- Right Form -->
+        <div class="login-right-form" style="padding: 32px 30px;">
+          <!-- Banner Error Merah Sesuai Contoh Gambar -->
+          <div id="modalErrorBanner" class="alert-error-banner">
+            Username atau Password Salah !! Silahkan isi ulang
+          </div>
+
+          <h2 class="auth-form-title" style="font-size: 1.9rem; margin-bottom: 20px;">Login</h2>
+          
+          <form id="modalLoginForm">
+            <div class="form-field" style="margin-bottom: 16px;">
+              <label for="modalUsername" class="form-label">Username</label>
+              <input type="text" id="modalUsername" class="form-input" placeholder="Masukkan username" required autocomplete="username">
+            </div>
+
+            <div class="form-field" style="margin-bottom: 16px;">
+              <label for="modalPassword" class="form-label">Password</label>
+              <input type="password" id="modalPassword" class="form-input" placeholder="Masukkan kata sandi" required autocomplete="current-password">
+            </div>
+
+            <a href="register.html" class="auth-helper-link" style="margin: 6px 0 16px;">Belum mempunyai akun? Klik disini untuk register</a>
+
+            <div style="display: flex; justify-content: flex-end;">
+              <button type="submit" class="btn-auth-submit" style="padding: 8px 26px;">Login</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/app.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-api.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-integration.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-mvp.js?v=dashboard-history-v5"></script>
+</body>
+</html>

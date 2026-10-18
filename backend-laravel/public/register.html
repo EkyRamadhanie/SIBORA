@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registrasi - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css?v=dashboard-history-v5">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="sibora-navbar">
+    <a href="index.html" class="brand-logo">SIBORA</a>
+    <div class="nav-group" id="publicNavMenu">
+      <a href="index.html" class="nav-pill">Kembali ke Home</a>
+    </div>
+    <button type="button" class="public-mobile-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="publicNavMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Register Area -->
+  <main class="bg-sports-darker">
+    <div class="register-modal-card">
+      
+      <!-- Card Header -->
+      <div class="register-card-header">
+        <h2>Registrasi</h2>
+      </div>
+
+      <!-- Card Body Form -->
+      <form id="registerForm">
+        <div class="register-card-body">
+          
+          <!-- Left Inputs Column -->
+          <div class="register-left-fields">
+            <div class="form-field">
+              <label for="regUsername" class="form-label">Username</label>
+              <input type="text" id="regUsername" class="form-input" placeholder="Masukkan username" required autocomplete="username">
+            </div>
+
+            <div class="form-field">
+              <label for="regEmail" class="form-label">Email</label>
+              <div class="input-with-suffix">
+                <input type="text" id="regEmail" class="form-input" placeholder="namaakun" required autocomplete="email">
+                <span class="input-suffix">@gmail.com</span>
+              </div>
+            </div>
+
+            <div class="form-field">
+              <label for="regPassword" class="form-label">Password</label>
+              <input type="password" id="regPassword" class="form-input" placeholder="Kata sandi" required autocomplete="new-password">
+            </div>
+
+            <div class="form-field">
+              <label for="regConfirmPassword" class="form-label">Konfirmasi Password</label>
+              <input type="password" id="regConfirmPassword" class="form-input" placeholder="Ulangi kata sandi" required autocomplete="new-password">
+            </div>
+          </div>
+
+          <!-- Right Actions Column -->
+          <div class="register-right-actions">
+            <label class="checkbox-agree">
+              <input type="checkbox" id="agreeTerms" required>
+              <span>Saya setuju dengan ketentuan yang berlaku</span>
+            </label>
+
+            <button type="submit" class="btn-auth-submit" style="margin-top: 24px; align-self: flex-start;">Buat Akun</button>
+
+            <!-- Sports Cluster Icons -->
+            <div class="sports-cluster-row">
+              <span title="Sepak Bola">⚽</span>
+              <span title="Basket">🏀</span>
+              <span title="Tenis">🎾</span>
+              <span title="Badminton">🏸</span>
+            </div>
+
+            <a href="login.html" class="auth-helper-link">Sudah mempunyai akun? Klik disini untuk login</a>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </main>
+
+  <script src="js/app.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-api.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-integration.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-mvp.js?v=dashboard-history-v5"></script>
+</body>
+</html>

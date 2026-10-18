@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laporan Pendapatan - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css?v=dashboard-history-v5">
+</head>
+<body style="background-color: #ebf5ee;">
+
+  <div class="dashboard-layout">
+    
+    <!-- Sidebar Kiri Pengelola -->
+    <aside class="dashboard-sidebar">
+      <a href="index.html" class="brand-logo">SIBORA</a>
+
+      <nav class="sidebar-menu">
+        <a href="pengelola-dashboard.html" class="sidebar-link">
+          <span>⊞</span> Dashboard
+        </a>
+        <a href="pengelola-booking.html" class="sidebar-link">
+          <span>📅</span> Booking
+        </a>
+        <a href="pengelola-lapangan.html" class="sidebar-link">
+          <span>⚽</span> Lapangan
+        </a>
+        <a href="pengelola-peralatan.html" class="sidebar-link">
+          <span>🏀</span> Peralatan
+        </a>
+        <a href="pengelola-pendapatan.html" class="sidebar-link active">
+          <span>📄</span> Pendapatan
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom-links">
+        <a href="index.html" class="sidebar-link">
+          <span>🏠</span> Kembali ke Home
+        </a>
+        <a href="login.html" class="sidebar-link" id="btnSidebarLogout">
+          <span>🚪</span> Logout
+        </a>
+      </div>
+    </aside>
+
+    <!-- Konten Kanan -->
+    <main class="dashboard-main-content">
+      
+      <!-- Topbar Header -->
+      <header class="dashboard-topbar" style="background-color: transparent; border: none; padding: 24px 36px 10px;">
+        <div>
+          <h1 style="font-size: 2rem; font-weight: 700; color: #143529;">Laporan Pendapatan</h1>
+        </div>
+
+        <div class="user-top-profile">
+          <div class="user-text-right">
+            <h4>Budi</h4>
+            <p>Pengelola</p>
+          </div>
+          <div class="user-big-avatar" style="background-color: #2b7a67;">
+            👤
+          </div>
+        </div>
+      </header>
+
+      <!-- Body Section -->
+      <div style="padding: 10px 36px 40px;">
+        
+        <!-- Controls Row -->
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; gap: 16px; flex-wrap: wrap;">
+          <div class="pengelola-search-bar" style="flex: 1; max-width: 440px;">
+            <input type="text" placeholder="Search">
+            <span class="search-icon-abs">🔍</span>
+          </div>
+
+          <div style="display: flex; gap: 12px;">
+            <button type="button" class="btn-export-mint" style="padding: 8px 18px; font-weight: 600;">Bulan ini</button>
+            <button type="button" class="btn-add-booking" onclick="window.print()">Export PDF</button>
+          </div>
+        </div>
+
+        <!-- 3 Stat Summary Cards -->
+        <div class="pengelola-stat-grid" style="margin-bottom: 24px;">
+          
+          <div class="pengelola-stat-card">
+            <span>Total Pendapatan</span>
+            <h3>Rp 13,95jt</h3>
+          </div>
+
+          <div class="pengelola-stat-card">
+            <span>Total Booking</span>
+            <h3>138</h3>
+          </div>
+
+          <div class="pengelola-stat-card">
+            <span>Pembatalan</span>
+            <h3>4</h3>
+          </div>
+
+        </div>
+
+        <!-- Multi-Line Comparison Chart Card (2024 vs 2025) -->
+        <div class="chart-panel-card" style="margin-bottom: 24px;">
+          <div class="svg-chart-container">
+            <svg viewBox="0 0 780 200" width="100%" height="200" style="overflow: visible;">
+              <defs>
+                <linearGradient id="coralGradient" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#ff7f6e" stop-opacity="0.35"/>
+                  <stop offset="100%" stop-color="#ff7f6e" stop-opacity="0.0"/>
+                </linearGradient>
+              </defs>
+
+              <!-- Y Axis Lines -->
+              <line x1="30" y1="20" x2="760" y2="20" stroke="#f0f3f1" stroke-width="1"/>
+              <text x="20" y="24" fill="#888" font-size="11" text-anchor="end">40</text>
+
+              <line x1="30" y1="90" x2="760" y2="90" stroke="#f0f3f1" stroke-width="1"/>
+              <text x="20" y="94" fill="#888" font-size="11" text-anchor="end">20</text>
+
+              <line x1="30" y1="160" x2="760" y2="160" stroke="#ddd" stroke-width="1"/>
+              <text x="20" y="164" fill="#888" font-size="11" text-anchor="end">0</text>
+
+              <!-- Area Fill 2025 (Coral) -->
+              <path d="M 50 148 Q 115 130 180 144 T 310 148 T 440 120 T 570 65 T 700 80 L 700 160 L 50 160 Z" fill="url(#coralGradient)" />
+
+              <!-- Line 2024 (Blue #7373f8) -->
+              <path d="M 50 148 L 115 146 L 180 146 L 245 140 L 310 148 L 375 120 L 440 126 L 505 130 L 570 140 L 635 142 L 700 130" fill="none" stroke="#7373f8" stroke-width="2"/>
+
+              <!-- Dots 2024 -->
+              <circle cx="50" cy="148" r="3.5" fill="#7373f8"/>
+              <circle cx="115" cy="146" r="3.5" fill="#7373f8"/>
+              <circle cx="180" cy="146" r="3.5" fill="#7373f8"/>
+              <circle cx="245" cy="140" r="3.5" fill="#7373f8"/>
+              <circle cx="310" cy="148" r="3.5" fill="#7373f8"/>
+              <circle cx="375" cy="120" r="3.5" fill="#7373f8"/>
+              <circle cx="440" cy="126" r="3.5" fill="#7373f8"/>
+              <circle cx="505" cy="130" r="3.5" fill="#7373f8"/>
+              <circle cx="570" cy="140" r="3.5" fill="#7373f8"/>
+              <circle cx="635" cy="142" r="3.5" fill="#7373f8"/>
+              <circle cx="700" cy="130" r="3.5" fill="#7373f8"/>
+
+              <!-- Line 2025 (Coral/Orange #ff7f6e) -->
+              <path d="M 50 148 L 115 130 L 180 144 L 245 148 L 310 148 L 375 148 L 440 120 L 505 132 L 570 65 L 635 75 L 700 80" fill="none" stroke="#ff7f6e" stroke-width="2"/>
+
+              <!-- Dots 2025 -->
+              <circle cx="50" cy="148" r="3.5" fill="#ff7f6e"/>
+              <circle cx="115" cy="130" r="3.5" fill="#ff7f6e"/>
+              <circle cx="180" cy="144" r="3.5" fill="#ff7f6e"/>
+              <circle cx="245" cy="148" r="3.5" fill="#ff7f6e"/>
+              <circle cx="310" cy="148" r="3.5" fill="#ff7f6e"/>
+              <circle cx="375" cy="148" r="3.5" fill="#ff7f6e"/>
+              <circle cx="440" cy="120" r="3.5" fill="#ff7f6e"/>
+              <circle cx="505" cy="132" r="3.5" fill="#ff7f6e"/>
+              <circle cx="570" cy="65" r="3.5" fill="#ff7f6e"/>
+              <circle cx="635" cy="75" r="3.5" fill="#ff7f6e"/>
+              <circle cx="700" cy="80" r="3.5" fill="#ff7f6e"/>
+
+              <!-- X Labels -->
+              <text x="50" y="178" fill="#555" font-size="10" text-anchor="middle">Januari</text>
+              <text x="115" y="178" fill="#555" font-size="10" text-anchor="middle">Februari</text>
+              <text x="180" y="178" fill="#555" font-size="10" text-anchor="middle">Maret</text>
+              <text x="245" y="178" fill="#555" font-size="10" text-anchor="middle">April</text>
+              <text x="310" y="178" fill="#555" font-size="10" text-anchor="middle">Mei</text>
+              <text x="375" y="178" fill="#555" font-size="10" text-anchor="middle">Juni</text>
+              <text x="440" y="178" fill="#555" font-size="10" text-anchor="middle">Juli</text>
+              <text x="505" y="178" fill="#555" font-size="10" text-anchor="middle">Agustus</text>
+              <text x="570" y="178" fill="#555" font-size="10" text-anchor="middle">September</text>
+              <text x="635" y="178" fill="#555" font-size="10" text-anchor="middle">November</text>
+              <text x="700" y="178" fill="#555" font-size="10" text-anchor="middle">Desember</text>
+            </svg>
+
+            <!-- Chart Legend -->
+            <div style="display: flex; justify-content: center; gap: 24px; margin-top: 14px; font-size: 0.85rem; color: #555;">
+              <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: #7373f8; margin-right: 6px;"></span> 2024</span>
+              <span><span style="display: inline-block; width: 10px; height: 10px; border-radius: 50%; background-color: #ff7f6e; margin-right: 6px;"></span> 2025</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table Rekap Fasilitas -->
+        <div class="pengelola-table-container">
+          <table class="pengelola-data-table">
+            <thead>
+              <tr>
+                <th style="font-size: 1rem; padding: 14px 20px;">Fasilitas</th>
+                <th style="font-size: 1rem; padding: 14px 20px;">Booking</th>
+                <th style="font-size: 1rem; padding: 14px 20px;">Pendapatan</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="padding: 14px 20px; font-weight: 700; font-size: 1rem;">Lapangan A</td>
+                <td style="padding: 14px 20px; font-weight: 700; font-size: 1rem;">88</td>
+                <td style="padding: 14px 20px; font-weight: 700; font-size: 1rem;">Rp 13,2jt</td>
+              </tr>
+              <tr>
+                <td style="padding: 14px 20px; font-weight: 700; font-size: 1rem;">Sepatu Futsal</td>
+                <td style="padding: 14px 20px; font-weight: 700; font-size: 1rem;">50</td>
+                <td style="padding: 14px 20px; font-weight: 700; font-size: 1rem;">Rp 750Rb</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <script src="js/app.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-api.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-integration.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-mvp.js?v=dashboard-history-v5"></script>
+</body>
+</html>

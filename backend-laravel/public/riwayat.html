@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Riwayat Booking - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css?v=history-page-v8">
+</head>
+<body>
+  <div class="dashboard-layout">
+    <aside class="dashboard-sidebar">
+      <a href="index.html" class="brand-logo">SIBORA</a>
+
+      <nav class="sidebar-menu" aria-label="Navigasi pelanggan">
+        <a href="dashboard.html" class="sidebar-link">
+          <span>⊞</span> Dashboard
+        </a>
+        <a href="lapangan.html" class="sidebar-link">
+          <span>📅</span> Booking
+        </a>
+        <a href="riwayat.html" class="sidebar-link active">
+          <span>📄</span> Riwayat Booking
+        </a>
+      </nav>
+
+      <div class="sidebar-bottom-links">
+        <a href="index.html" class="sidebar-link">
+          <span>🏠</span> Kembali ke Home
+        </a>
+        <a href="login.html" class="sidebar-link" id="btnSidebarLogout">
+          <span>🚪</span> Logout
+        </a>
+      </div>
+    </aside>
+
+    <main class="dashboard-main-content mvp-main">
+      <header class="mvp-page-header">
+        <div>
+          <div class="mvp-eyebrow">SIBORA · AREA PELANGGAN</div>
+          <h1>Riwayat Booking &amp; Penyewaan</h1>
+          <p>Kelola transaksi lapangan dan peralatan dalam satu halaman.</p>
+        </div>
+        <div class="mvp-profile-chip">
+          <div class="mvp-avatar">P</div>
+          <div>
+            <strong class="mvp-history-name">Pelanggan</strong>
+            <span class="mvp-history-role">Pelanggan</span>
+          </div>
+          <a href="dashboard.html" class="mvp-icon-link" title="Kembali ke dashboard" aria-label="Kembali ke dashboard">↗</a>
+        </div>
+      </header>
+
+      <div class="mvp-page-body">
+        <section class="mvp-panel mvp-history-page-panel">
+          <div class="mvp-panel-heading">
+            <div>
+              <h2>Semua transaksi</h2>
+              <p>Riwayat diambil langsung dari akun Anda. Transaksi terbaru akan muncul terlebih dahulu.</p>
+            </div>
+            <div class="mvp-history-shortcuts">
+              <a href="lapangan.html" class="mvp-btn mvp-btn-secondary">Booking Lapangan</a>
+              <a href="peralatan.html" class="mvp-btn mvp-btn-primary">Sewa Peralatan</a>
+            </div>
+          </div>
+
+          <div class="history-items-list mvp-history-list" aria-live="polite" aria-busy="true">
+            <div class="mvp-loading"><span class="mvp-spinner"></span> Memuat riwayat transaksi…</div>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="js/app.js?v=history-page-v8"></script>
+  <script src="js/sibora-api.js?v=history-page-v8"></script>
+  <script src="js/sibora-integration.js?v=history-page-v8"></script>
+  <script src="js/sibora-mvp.js?v=history-page-v8"></script>
+</body>
+</html>

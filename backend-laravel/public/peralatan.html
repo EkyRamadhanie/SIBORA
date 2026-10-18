@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Peralatan Olahraga - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css?v=dashboard-history-v5">
+</head>
+<body class="bg-sports-cover">
+
+  <!-- Navbar -->
+  <header class="sibora-navbar">
+    <a href="index.html" class="brand-logo">SIBORA</a>
+    <div class="nav-group" id="publicNavMenu">
+      <a href="lapangan.html" class="nav-pill">Lapangan</a>
+      <a href="peralatan.html" class="nav-pill active">Peralatan</a>
+      <a href="jadwal.html" class="nav-pill">Cek Jadwal</a>
+      <a href="login.html" class="nav-pill" data-nav-action="login">Login</a>
+    </div>
+    <button type="button" class="public-mobile-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="publicNavMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Panel pencarian: memakai struktur dan kelas yang sama dengan halaman Lapangan -->
+  <section class="lapangan-hero-panel" aria-label="Pencarian peralatan">
+    <h2 class="lapangan-hero-title">Temukan peralatan olahraga yang anda butuhkan</h2>
+
+    <div class="search-bar-row">
+      <input
+        type="text"
+        id="searchPeralatanInput"
+        class="search-input-field"
+        placeholder="Cari nama peralatan, merek, atau jenis..."
+        autocomplete="off"
+        aria-label="Cari peralatan olahraga"
+      >
+      <button type="button" id="btnResetSearchPeralatan" class="btn-filter-gray">Semua</button>
+      <button type="button" id="btnSearchPeralatan" class="btn-search-bright">Cari</button>
+    </div>
+
+    <!-- Filter kategori menggunakan style yang sama dengan halaman Lapangan -->
+    <div class="category-tags-row">
+      <button type="button" class="category-filter-pill peralatan-pill active" data-category="all">Semua</button>
+      <button type="button" class="category-filter-pill peralatan-pill" data-category="bola">Bola</button>
+      <button type="button" class="category-filter-pill peralatan-pill" data-category="raket">Raket</button>
+      <button type="button" class="category-filter-pill peralatan-pill" data-category="sepatu">Sepatu</button>
+      <button type="button" class="category-filter-pill peralatan-pill" data-category="pelindung">Pelindung</button>
+    </div>
+  </section>
+
+  <!-- Daftar Peralatan: markup kartu disimpan di HTML, bukan dibuat di JavaScript. -->
+  <main class="peralatan-grid-wrapper">
+    <div class="peralatan-grid" id="peralatanGrid" aria-live="polite">
+      <p class="equipment-list-message">Memuat daftar peralatan...</p>
+    </div>
+  </main>
+
+  <!-- Template kartu digunakan JavaScript untuk mengisi data dari API Laravel. -->
+  <template id="equipmentCardTemplate">
+    <article class="equipment-card" data-peralatan-id="" data-category="">
+      <div class="equipment-visual-top">
+        <span data-equipment-field="icon" title="Peralatan olahraga">🎾</span>
+      </div>
+
+      <div class="equipment-details-bottom">
+        <h3 class="equipment-title" data-equipment-field="name">Nama Peralatan</h3>
+        <p class="equipment-spec" data-equipment-field="spec">Spesifikasi peralatan</p>
+        <p class="equipment-price" data-equipment-field="price">Rp 0/jam</p>
+        <button
+          type="button"
+          class="btn-rent-equipment"
+          data-equipment-field="rent"
+          data-equipment-id=""
+        >
+          +Sewa
+        </button>
+      </div>
+    </article>
+  </template>
+
+  <template id="equipmentSearchEmptyTemplate">
+    <div class="mvp-empty" id="equipmentSearchEmpty">
+      <span class="mvp-empty-icon">⌕</span>
+      <h3 data-equipment-empty-title>Peralatan tidak ditemukan</h3>
+      <p data-equipment-empty-description>Coba kata kunci atau kategori lain.</p>
+    </div>
+  </template>
+
+  <!-- ==========================================================
+       POP-UP MODAL SEWA PERALATAN
+       ========================================================== -->
+  <div id="modalSewaPeralatan" class="modal-overlay">
+    <div class="equipment-modal-card">
+      
+      <!-- Header -->
+      <div class="equipment-modal-header">
+        <h3 id="rentModalTitle">Sewa Bola Futsal</h3>
+        <button type="button" class="btn-close-gray" onclick="closeRentModal()">&times;</button>
+      </div>
+
+      <p class="equipment-modal-sub" id="rentModalSub">Mikasa • Rp 15.000/jam</p>
+
+      <!-- Counter Jumlah -->
+      <label style="display: block; font-size: 0.9rem; font-weight: 700; color: #111; margin-bottom: 8px;">Jumlah:</label>
+      <div class="counter-row">
+        <button type="button" class="btn-counter-square" onclick="changeQty(-1)">−</button>
+        <div class="counter-value-box" id="rentQty">2</div>
+        <button type="button" class="btn-counter-square" onclick="changeQty(1)">+</button>
+      </div>
+
+      <!-- Form Waktu & Durasi -->
+      <div class="equipment-form-grid">
+        <div>
+          <label for="rentDate">Tanggal Sewa</label>
+          <input type="date" id="rentDate" class="input-soft-gray" onchange="updateRentCalc()" required>
+        </div>
+        <div>
+          <label for="rentStartTime">Waktu Mulai</label>
+          <select id="rentStartTime" class="input-soft-gray" onchange="updateRentCalc()" required>
+            <option value="" selected disabled>Pilih waktu mulai</option>
+            <option value="08:00">08.00</option>
+            <option value="09:00">09.00</option>
+            <option value="10:00">10.00</option>
+            <option value="11:00">11.00</option>
+            <option value="12:00">12.00</option>
+            <option value="13:00">13.00</option>
+            <option value="14:00">14.00</option>
+            <option value="15:00">15.00</option>
+            <option value="16:00">16.00</option>
+            <option value="17:00">17.00</option>
+            <option value="18:00">18.00</option>
+            <option value="19:00">19.00</option>
+            <option value="20:00">20.00</option>
+            <option value="21:00">21.00</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="rentDuration">Durasi Sewa</label>
+          <select id="rentDuration" class="input-soft-gray" onchange="updateRentCalc()" disabled required>
+            <option value="" selected disabled>Pilih waktu mulai dahulu</option>
+            <option value="1">1 jam</option>
+            <option value="2">2 jam</option>
+            <option value="3">3 jam</option>
+            <option value="4">4 jam</option>
+          </select>
+        </div>
+        <div>
+          <label for="rentEndTime">Waktu Selesai</label>
+          <input
+            type="text"
+            id="rentEndTime"
+            class="input-soft-gray"
+            value="Otomatis"
+            placeholder="Otomatis dari durasi"
+            readonly
+            aria-live="polite"
+          >
+        </div>
+      </div>
+
+      <!-- Kotak Kalkulasi -->
+      <div class="equipment-calc-box">
+        <p id="rentCalcDetail">Pilih waktu mulai terlebih dahulu.</p>
+        <div class="calc-total-row">
+          <span>Total</span>
+          <strong id="rentTotal">Rp 0</strong>
+        </div>
+      </div>
+
+      <!-- Tombol Lanjut ke Pembayaran -->
+      <a href="pembayaran.html" id="btnSubmitEquipmentRental" class="btn-venue-booking" style="text-align: center; display: block;">
+        Lanjut ke Pembayaran
+      </a>
+
+    </div>
+  </div>
+
+  <script src="js/app.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-api.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-integration.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-mvp.js?v=dashboard-history-v5"></script>
+</body>
+</html>

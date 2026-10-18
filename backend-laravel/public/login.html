@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login - SIBORA</title>
+  <link rel="stylesheet" href="css/style.css?v=dashboard-history-v5">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="sibora-navbar">
+    <a href="index.html" class="brand-logo">SIBORA</a>
+    <div class="nav-group" id="publicNavMenu">
+      <a href="index.html" class="nav-pill">Kembali ke Home</a>
+    </div>
+    <button type="button" class="public-mobile-toggle" aria-label="Buka menu navigasi" aria-expanded="false" aria-controls="publicNavMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
+
+  <!-- Login Area -->
+  <main class="bg-sports-darker">
+    <div class="auth-wrapper login-split-card">
+      
+      <!-- Left Branding & Sports Cluster -->
+      <div class="login-left-brand">
+        <div class="floating-sports-cluster">
+          <span class="cluster-item ball-basket" title="Basket">🏀</span>
+          <span class="cluster-item ball-tennis" title="Tenis">🎾</span>
+          <span class="cluster-item ball-soccer" title="Sepak Bola / Futsal">⚽</span>
+          <span class="cluster-item racket-shuttle" title="Badminton">🏸</span>
+        </div>
+        <h2 class="brand-text-large">SIBORA</h2>
+        <p class="brand-text-sub">Sistem Booking Fasilitas Olahraga</p>
+      </div>
+
+      <!-- Right Form -->
+      <div class="login-right-form">
+        <!-- Error Banner Sesuai Gambar -->
+        <div id="loginErrorBanner" class="alert-error-banner">
+          Username atau Password Salah !! Silahkan isi ulang
+        </div>
+
+        <h2 class="auth-form-title">Login</h2>
+        
+        <form id="loginForm">
+          <div class="form-field">
+            <label for="loginUsername" class="form-label">Username</label>
+            <input type="text" id="loginUsername" class="form-input" placeholder="Masukkan username anda" required autocomplete="username">
+          </div>
+
+          <div class="form-field">
+            <label for="loginPassword" class="form-label">Password</label>
+            <input type="password" id="loginPassword" class="form-input" placeholder="Masukkan kata sandi" required autocomplete="current-password">
+          </div>
+
+          <a href="register.html" class="auth-helper-link">Belum mempunyai akun? Klik disini untuk register</a>
+
+          <div style="display: flex; justify-content: flex-end;">
+            <button type="submit" class="btn-auth-submit">Login</button>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <script src="js/app.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-api.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-integration.js?v=dashboard-history-v5"></script>
+  <script src="js/sibora-mvp.js?v=dashboard-history-v5"></script>
+</body>
+</html>

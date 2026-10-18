@@ -1,0 +1,88 @@
+@baseUrl = http://127.0.0.1:8000/api/v1
+@token = GANTI_DENGAN_TOKEN_LOGIN
+@lapanganId = 1
+@transaksiId = 1
+@pembayaranId = 1
+
+### Status API
+GET {{baseUrl}}/health
+Accept: application/json
+
+### Login akun demo pelanggan
+POST {{baseUrl}}/auth/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "dani",
+  "password": "123456"
+}
+
+### Daftar lapangan
+GET {{baseUrl}}/venues
+Accept: application/json
+
+### Jadwal lapangan (ganti ke tanggal mendatang)
+GET {{baseUrl}}/venues/{{lapanganId}}/schedule?tanggal=2026-12-10
+Accept: application/json
+
+### Membuat booking lapangan (perlu token pelanggan)
+POST {{baseUrl}}/bookings/venues
+Authorization: Bearer {{token}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "lapangan_id": 1,
+  "tanggal": "2026-12-10",
+  "jam_mulai": "10:00",
+  "durasi_jam": 2,
+  "nama_penyewa": "Dani Raja Hutan",
+  "no_hp_penyewa": "081234567890",
+  "email_penyewa": "dani@sibora.local",
+  "catatan": "Booking uji coba"
+}
+
+### Sewa peralatan (perlu token pelanggan)
+POST {{baseUrl}}/bookings/equipment-rentals
+Authorization: Bearer {{token}}
+Accept: application/json
+Content-Type: application/json
+
+{
+  "tanggal_sewa": "2026-12-10",
+  "waktu_mulai": "10:00",
+  "durasi_jam": 2,
+  "nama_penyewa": "Dani Raja Hutan",
+  "no_hp_penyewa": "081234567890",
+  "email_penyewa": "dani@sibora.local",
+  "items": [
+    { "peralatan_id": 1, "jumlah": 2 }
+  ]
+}
+
+### Membuat permintaan pembayaran
+POST {{baseUrl}}/transactions/{{transaksiId}}/payments
+Authorization: Bearer {{token}}
+Accept: application/json
+Content-Type: application/json
+
+{ "metode": "qris" }
+
+### Konfirmasi pembayaran DEMO (hanya APP_ENV=local)
+POST {{baseUrl}}/payments/{{pembayaranId}}/mock-confirm
+Authorization: Bearer {{token}}
+Accept: application/json
+Content-Type: application/json
+
+{}
+
+### Riwayat booking
+GET {{baseUrl}}/bookings/history
+Authorization: Bearer {{token}}
+Accept: application/json
+
+### Laporan pendapatan (role admin/pengelola)
+GET {{baseUrl}}/reports/revenue?tahun=2026
+Authorization: Bearer {{token}}
+Accept: application/json

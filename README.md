@@ -1,184 +1,266 @@
-# 🏟️ SIBORA - Sistem Booking Fasilitas Olahraga Online
+<div align="center">
 
-**SIBORA** adalah platform web modern untuk pemesanan (*booking*) fasilitas dan lapangan olahraga, penyewaan perlengkapan, serta pengelolaan jadwal secara daring. 
+# 🏟️ SIBORA
+### Sistem Booking Fasilitas Olahraga & Persewaan Peralatan Online
 
-Aplikasi ini dirancang dengan arsitektur **3-Tier** (*Presentation, Application, Data*) menggunakan antarmuka berbasis HTML, CSS modern, dan JavaScript interaktif yang siap dihubungkan ke Application Server (REST API Laravel / PHP-FPM) dan Database Server (MySQL).
+[![Laravel](https://img.shields.io/badge/Laravel-12.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)](https://laravel.com)
+[![PHP](https://img.shields.io/badge/PHP-8.2+-777BB4?style=for-the-badge&logo=php&logoColor=white)](https://www.php.net)
+[![MySQL](https://img.shields.io/badge/MySQL-8.0+-4479A1?style=for-the-badge&logo=mysql&logoColor=white)](https://www.mysql.com)
+[![Sanctum](https://img.shields.io/badge/Auth-Sanctum%20Bearer-red?style=for-the-badge)](https://laravel.com/docs/sanctum)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](LICENSE)
+[![Architecture](https://img.shields.io/badge/Architecture-RESTful%20API-success?style=for-the-badge)](#-arsitektur-sistem)
 
----
-
-## 📸 Fitur Utama Antarmuka (Frontend)
-
-1. **Beranda & Kategori (`index.html`)**
-   - Hero banner dengan CTA menuju jadwal.
-   - 3 Kategori utama: *Lapangan*, *Peralatan*, dan *Fasilitas*.
-2. **Autentikasi Pengguna (`login.html` & `register.html`)**
-   - Halaman Login *dual-card glassmorphism* dengan maskot bola olahraga.
-   - Validasi akun demo dan pesan banner error merah (*"Username atau Password Salah !!"*).
-   - Form registrasi akun baru yang langsung tersimpan di *local storage*.
-3. **Katalog Lapangan (`lapangan.html`)**
-   - Panel pencarian dan filter cepat jenis olahraga (*Semua, Futsal, Badminton, Basket, Padel, Tenis*).
-   - Kartu venue dengan foto, badge fasilitas, dan harga per jam.
-   - Proteksi booking: memunculkan modal login pop-up otomatis jika belum login.
-4. **Cek Jadwal Lapangan (`jadwal.html`)**
-   - Sidebar seleksi venue olahraga.
-   - Tabel jadwal mingguan interaktif (Senin s/d Minggu, pukul 08:00–21:00) dengan indikator slot waktu terpesan (*Booked*) dan slot kosong.
-5. **Form Booking Lapangan (`booking.html`)**
-   - Informasi venue terpilih.
-   - Form data penyewa (Nama, No. HP, Email).
-   - Pemilihan tanggal, durasi sewa, dan seleksi slot sesi jam interaktif.
-   - Rincian biaya sewa dan tombol lanjut ke pembayaran.
-6. **Konfirmasi & Gateway Pembayaran (`pembayaran.html`)**
-   - Stepper 4 tahap (*Pilih ➔ Jadwal ➔ Data ➔ Pembayaran*).
-   - Pilihan metode bayar (*Bank BCA, Bank BNI, QRIS, Cash*).
-   - Hitung mundur waktu penyelesaian 24 jam dan nomor rekening resmi.
-   - **Pop-Up Pembayaran Berhasil**: Menampilkan kode booking resmi (contoh: `SIB-2025-0712`), rincian biaya, tombol salin kode, dan unduh bukti transaksi.
-7. **Sewa Peralatan Olahraga (`peralatan.html`)**
-   - Filter kategori barang (*Semua, Bola, Raket, Sepatu, Pelindung*).
-   - **Modal Pop-Up Sewa**: Dilengkapi tombol counter kuantitas `[-]` dan `[+]`, pemilihan waktu sewa, serta kalkulasi total harga otomatis secara *real-time*.
-8. **Riwayat Pembelian & Cetak Struk (`riwayat.html`)**
-   - Daftar riwayat transaksi sewa pengguna dengan tombol *Sewa lagi*.
-   - Tombol cetak struk pemesanan.
-9. **Dashboard Pengguna (`dashboard.html`)**
-   - Sidebar navigasi (*Dashboard, Booking, Favorite, History, Logout*).
-   - Profil pengguna (*Dani Raja Hutan*), pengaturan identitas diri, dan kelola email.
-
-### 🏢 Fitur Sisi Pengelola Lapangan (Budi)
-10. **Dashboard Pengelola (`pengelola-dashboard.html`)**
-    - 3 Kartu statistik ringkas (*Total booking*, *Pendapatan hari ini*, *Lapangan aktif*).
-    - Diagram batang mingguan (*Pendapatan Mingguan 2026*).
-    - Tabel ringkas *Booking Terbaru* dengan badge status pembayaran (*Lunas*, *DP*, *Batal*).
-11. **Kelola Jadwal dan Booking (`pengelola-booking.html`)**
-    - Ringkasan 4 badge kuantitas status: *Lunas (20)*, *Pending (6)*, *DP (3)*, *Batal (2)*.
-    - Filter tanggal, filter status, tombol *+ Tambah Booking*, dan *Export*.
-    - Tabel data pemesanan lengkap dengan aksi edit ✏️ dan hapus 🗑️ serta penomoran halaman (pagination).
-12. **Kelola Lapangan dan Fasilitas (`pengelola-lapangan.html`)**
-    - Pencarian lapangan, kartu venue aktif dengan badge status dan aksi edit.
-    - Kartu dashed `+ Tambah lapangan` untuk penambahan fasilitas baru.
-13. **Kelola Peralatan Olahraga (`pengelola-peralatan.html`)**
-    - Manajemen alat olahraga (*Bola Futsal, Raket Badminton*) dengan tombol edit.
-    - Kartu dashed `+ Tambah Peralatan`.
-14. **Laporan Pendapatan Pengelola (`pengelola-pendapatan.html`)**
-    - 3 Ringkasan kartu: *Total Pendapatan (Rp 13,95jt)*, *Total Booking (138)*, *Pembatalan (4)*.
-    - Diagram garis komparasi multi-tahun (*Perbandingan 2024 vs 2025*).
-    - Tabel rincian pendapatan berdasarkan fasilitas dan tombol *Export PDF*.
-
-### 🛡️ Fitur Sisi Administrator Sistem (Budi Administrator)
-15. **Manajemen Akun Pengguna & Pengelola (`admin-manajemen.html`)**
-    - 3 Kartu metrik: *Total Akun (5)*, *User (3)*, *Pengelola Lapangan (2)*.
-    - Filter kategori interaktif (*Semua*, *User*, *Pengelola Lapangan*).
-    - Pencarian live instan berdasarkan nama, email, atau nama lapangan.
-    - Tabel data akun lengkap dengan badge role dan badge status aktif/nonaktif.
-    - Aksi manajemen: *Edit*, *Reset Password*, dan *Hapus*.
-    - **Modal Pop-Up Tambah & Edit Akun**: Form 2-kolom responsif untuk penambahan atau modifikasi akun (*Nama lengkap, Email, Role, No. HP, Lapangan yang dikelola, Password, Status*).
-16. **Laporan Pendapatan Global Admin (`admin-pendapatan.html`)**
-    - 3 Kartu metrik global: *Total Pendapatan (Rp 48jt)*, *Total Booking (320)*, *Pembatalan (12)*.
-    - Tombol filter periode (*Bulan ini*) dan *Export PDF*.
-    - Diagram garis komparatif tahunan 2024 vs 2025 berbasis SVG dengan area fill gradien halus.
-    - Tabel rekapitulasi performa per lapangan (*Futsal A, Futsal B, Futsal C*) dengan scrollbar kustom.
+*Solusi digital terintegrasi untuk reservasi lapangan olahraga, penyewaan alat, otomasi transaksi, dan analitik pendapatan berbasis peran.*
 
 ---
 
-## 📂 Struktur Direktori Proyek
+[Fitur Utama](#-fitur-utama) • [Teknologi](#-teknologi) • [Struktur Proyek](#-struktur-proyek) • [Panduan Instalasi](#-panduan-instalasi-cepat) • [Akun Demo](#-akun-demo-lokal) • [Dokumentasi Lengkap](#-indeks-dokumentasi-arsitektur) • [Roadmap](#-rencana-pengembangan-roadmap)
+
+</div>
+
+---
+
+## 📖 Tentang SIBORA
+
+**SIBORA** adalah platform manajemen dan pemesanan fasilitas olahraga (Futsal, Badminton, Basket, Padel, Tenis) yang dirancang untuk mengatasi inefisiensi pencatatan manual, risiko bentrok jadwal (*double booking*), serta ketiadaan transparansi laporan bagi pemilik gelanggang olahraga.
+
+Sistem ini dibangun dengan arsitektur **Clean Full Stack**:
+- **Backend API**: Menggunakan **Laravel 12** dengan arsitektur RESTful murni, validasi request ketat, autentikasi stateless berbasis token **Laravel Sanctum**, dan integritas relasional basis data yang kuat.
+- **Frontend Client**: Antarmuka web responsif berbasis **HTML5 Semantik, Modern Vanilla CSS, dan Modular JavaScript**. Frontend terintegrasi langsung dalam direktori `backend-laravel/public/`, memungkinkan seluruh ekosistem aplikasi dijalankan secara efisien dari satu server lokal tanpa memerlukan proses build yang rumit.
+
+---
+
+## ✨ Fitur Utama
+
+Aplikasi dirancang dengan **Role-Based Access Control (RBAC)** yang membagi wewenang secara presisi ke dalam 4 tingkatan:
+
+### 🌐 1. Pengunjung (Guest / Publik)
+- Menjelajah katalog lapangan dengan filter cabang olahraga, fasilitas, dan kata kunci lokasi.
+- Memeriksa jadwal ketersediaan slot jam lapangan secara interaktif dan real-time.
+- Melihat katalog peralatan olahraga yang tersedia untuk disewa beserta tarif dan sisa stok.
+
+### 👤 2. Pelanggan (Customer)
+- Registrasi akun baru dan autentikasi aman dengan bearer token.
+- Booking lapangan olahraga dengan penentuan tanggal, jam mulai, dan durasi tanding.
+- Sewa multi-peralatan olahraga dalam satu kesatuan transaksi reservasi.
+- Simulasi pembayaran multi-channel (*mock payment*: BCA, BNI, QRIS, Transfer Bank, Cash).
+- Melihat riwayat transaksi lengkap dengan status pembayaran dan batas waktu transfer.
+- Cetak struk reservasi digital / invoice resmi langsung dari browser.
+- Kelola profil personal dan daftar lapangan favorit untuk pemesanan cepat.
+
+### 🏢 3. Pengelola Lapangan (Partner / Venue Manager)
+- Dashboard operasional menampilkan ringkasan performa fasilitas yang dikelola.
+- Manajemen katalog lapangan: tambah, ubah tarif/jadwal buka-tutup, dan unggah foto fasilitas.
+- Manajemen inventaris peralatan olahraga: kontrol stok dan tarif sewa per jam.
+- Pemantauan pesanan masuk khusus untuk lapangan dan alat milik pengelola bersangkutan.
+- Laporan analitik pendapatan terisolasi: rincian pendapatan kotor, potongan admin, dan estimasi laba bersih.
+
+### 🛡️ 4. Super Administrator
+- Ringkasan statistik platform secara global (total lapangan, transaksi, pengguna, dan pendapatan).
+- Manajemen akun pengguna: pembuatan akun baru, penyesuaian peran (`admin`, `pengelola`, `pelanggan`), aktivasi/nonaktifasi akun, dan reset password.
+- Moderasi katalog lintas seluruh pengelola gelanggang olahraga.
+- Laporan keuangan global dan audit log pembatalan transaksi / refund.
+
+---
+
+## 🛠️ Teknologi
+
+| Komponen | Teknologi | Keterangan |
+|---|---|---|
+| **Backend Framework** | Laravel 12.x | REST API, Service Layer, Eloquent ORM |
+| **Runtime Bahasa** | PHP 8.2+ | Strong typing, Bcrypt hashing, Fileinfo validation |
+| **Autentikasi API** | Laravel Sanctum 4.x | Stateful & stateless Bearer Token |
+| **Basis Data** | MySQL / MariaDB | 17 Tabel Relasional dengan Foreign Keys & Indexing |
+| **Frontend UI** | HTML5, CSS3, Vanilla JS | Design Tokens, Mobile-Friendly, Zero Build Step |
+| **API Testing** | VS Code REST Client & Postman | File `.http` dan Postman Collection disertakan |
+| **Dev Environment** | Windows XAMPP / Native CLI | Dilengkapi skrip otomatisasi `start_server.bat` |
+
+---
+
+## 📂 Struktur Proyek
+
+Repositori ini disusun dengan standar arsitektur industri yang rapi dan terisolasi:
 
 ```text
 SIBORA/
-├── index.html                  # Halaman Utama (Home)
-├── login.html                  # Halaman Login (Role-based redirect: User, Pengelola, Admin)
-├── register.html               # Halaman Pendaftaran Akun
-├── lapangan.html               # Katalog & Pencarian Lapangan
-├── peralatan.html              # Katalog & Sewa Peralatan (dengan Modal Counter)
-├── jadwal.html                 # Jadwal Mingguan Interaktif Lapangan
-├── booking.html                # Form Data Penyewa & Sesi Booking
-├── pembayaran.html             # Konfirmasi Pembayaran & Modal Berhasil
-├── riwayat.html                # Riwayat Transaksi & Cetak Struk
-├── dashboard.html              # Dashboard Profil Pelanggan (Dani)
-├── pengelola-dashboard.html    # Dashboard Pengelola (Budi)
-├── pengelola-booking.html      # Kelola Jadwal dan Booking Pengelola
-├── pengelola-lapangan.html     # Kelola Lapangan & Fasilitas Pengelola
-├── pengelola-peralatan.html    # Kelola Peralatan Pengelola
-├── pengelola-pendapatan.html   # Laporan Pendapatan Pengelola
-├── admin-manajemen.html        # Manajemen Akun Administrator (Tabel, Filter, Modal Tambah/Edit)
-├── admin-pendapatan.html       # Laporan Pendapatan Global Administrator (Chart Komparasi 2024 vs 2025)
-├── css/
-│   └── style.css               # Desain terpadu (Tema Hijau Tua, Glassmorphism, Responsive)
-├── js/
-│   └── app.js                  # Logika interaktif frontend (Filter, Validasi, Modal, Storage)
-├── assets/
-│   └── images/                 # Background tekstur rumput & foto venue realistis
-├── .gitignore                  # File pengabaian git
-└── README.md                   # Dokumentasi proyek
+├── .github/                        # Template komunitas GitHub (Issue & PR templates)
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.md
+│   │   └── feature_request.md
+│   └── PULL_REQUEST_TEMPLATE.md
+├── backend-laravel/                # Sumber kode utama Backend API & Frontend Statis
+│   ├── app/
+│   │   ├── Http/Controllers/       # Controller REST API per domain modul
+│   │   ├── Models/                 # Eloquent Models & relasi relasional
+│   │   └── Services/               # Logika kalkulasi bisnis, booking, & payment
+│   ├── bootstrap/                  # Inisialisasi framework Laravel
+│   ├── config/                     # Konfigurasi aplikasi & database
+│   ├── database/
+│   │   ├── migrations/             # Skema migrasi 17 tabel terpadu
+│   │   └── seeders/                # Seeder data awal untuk pengujian lokal
+│   ├── public/                     # Frontend aktif (HTML, CSS, JS modular, aset)
+│   │   ├── css/                    # Desain stylesheet global & komponen
+│   │   ├── js/                     # Modul logika client, API client fetch
+│   │   ├── uploads/sibora/         # Penyimpanan media (lapangan & peralatan)
+│   │   └── *.html                  # Halaman antarmuka publik, pelanggan, & admin
+│   ├── routes/
+│   │   └── api.php                 # 44 endpoint RESTful API versi 1
+│   ├── storage/                    # Log framework & sesi
+│   ├── tests/                      # Testing suite
+│   ├── .env.example                # Templat variabel lingkungan konfigurasi
+│   ├── artisan                     # Antarmuka CLI Laravel
+│   ├── composer.json               # Definisi dependensi PHP
+│   └── composer.lock               # Kunci versi dependensi stabil
+├── docs/                           # Dokumentasi mendalam teknis & arsitektur
+│   ├── ARCHITECTURE.md             # Desain sistem, RBAC, dan siklus transaksi
+│   ├── API_DOCUMENTATION.md        # Spesifikasi 44 endpoint API beserta payload
+│   ├── DATABASE_SCHEMA.md          # ERD Mermaid & kamus data 17 tabel
+│   └── DATABASE_AND_CLEANUP_AUDIT.md # Riwayat audit & validasi paket
+├── postman/                        # Pengujian API via Postman
+│   └── SIBORA.postman_collection.json
+├── .gitignore                      # Filter git profesional (bebas sampah & credentials)
+├── CONTRIBUTING.md                 # Panduan kolaborasi, commit, dan branching
+├── LICENSE                         # Lisensi sumber terbuka (MIT)
+├── README.md                       # Dokumentasi utama proyek
+├── ROADMAP.md                      # Rencana pengembangan skala lanjut
+├── SIBORA_API.http                 # File pengujian API langsung di VS Code
+└── start_server.bat                # Skrip 1-klik menjalankan MySQL & server lokal Windows
 ```
 
 ---
 
-## 🔑 Akun Demo untuk Pengujian Cepat
+## 🚀 Panduan Instalasi Cepat
 
-Sistem frontend telah dilengkapi dengan akun bawaan untuk kemudahan testing alur:
+Ikuti langkah-langkah di bawah ini untuk menjalankan SIBORA di lingkungan lokal:
 
-| Username | Password | Peran (Role) | Keterangan & Pengalihan Halaman |
-| :--- | :--- | :--- | :--- |
-| **`admin`** | **`admin123`** | Admin | Masuk langsung ke `admin-manajemen.html` |
-| **`budi`** | **`123456`** | Pengelola | Masuk langsung ke `pengelola-dashboard.html` |
-| **`pengelola`**| **`pengelola123`**| Pengelola | Masuk langsung ke `pengelola-dashboard.html` |
-| **`dani`** | **`123456`** | Pelanggan | Masuk langsung ke `dashboard.html` |
-| **`user`** | **`123456`** | Pelanggan | Masuk langsung ke `dashboard.html` |
-| **`sibora`** | **`sibora2026`** | Admin | Akun Cadangan Administrator |
+### 1. Prasyarat Sistem
+- **PHP** minimal versi **8.2** (pastikan ekstensi `pdo_mysql`, `mbstring`, `openssl`, `fileinfo`, `curl` aktif di `php.ini`).
+- **Composer** terinstal secara global.
+- **MySQL / MariaDB** (bisa menggunakan bawaan XAMPP).
+- **Git**.
 
-> *Catatan:* Anda juga dapat mendaftar akun baru lewat [register.html](register.html). Akun baru otomatis disimpan ke `localStorage` browser dan dapat digunakan langsung untuk login.
+### 2. Clone Repositori
+```bash
+git clone https://github.com/EkyRamadhanie/SIBORA.git
+cd SIBORA
+```
 
----
+### 3. Konfigurasi Environment & Dependensi
+Masuk ke direktori `backend-laravel`:
+```powershell
+cd backend-laravel
+Copy-Item .env.example .env
+composer install
+php artisan key:generate
+```
 
-## 🛠️ Panduan untuk Pengembang (Developer Guide)
-
-### 1. Untuk Pengembang Frontend (Melanjutkan UI/UX)
-- **Desain & Warna Token:** Seluruh variabel warna dan font didefinisikan pada bagian `:root` di [css/style.css](css/style.css) (misal: `--bg-dark-header`, `--text-mint`, `--pill-mint`, dsb.).
-- **Responsivitas:** Gunakan breakpoint media query yang telah disediakan (`@media (max-width: 992px)` dan `@media (max-width: 768px)`).
-- **Logika Modal:** Fungsi modal pop-up dikendalikan melalui class `.modal-overlay.active` di [js/app.js](js/app.js).
-
-### 2. Untuk Pengembang Backend (Integrasi REST API Laravel)
-Berdasarkan Deployment Diagram SIBORA (3-Tier Nginx + Laravel + MySQL), backend disarankan menyediakan endpoint REST API berikut:
-
-| Modul | Method | Endpoint Usulan | Deskripsi |
-| :--- | :---: | :--- | :--- |
-| **Auth** | `POST` | `/api/v1/auth/register` | Mendaftarkan akun pelanggan baru |
-| **Auth** | `POST` | `/api/v1/auth/login` | Login pelanggan & generate JWT / Sanctum token |
-| **Auth** | `GET` | `/api/v1/user/profile` | Mengambil data profil pelanggan yang login |
-| **Venue** | `GET` | `/api/v1/venues` | Mengambil daftar lapangan & filter kategori |
-| **Venue** | `GET` | `/api/v1/venues/{id}/schedule` | Mengambil ketersediaan slot waktu lapangan |
-| **Equipment** | `GET` | `/api/v1/equipments` | Mengambil daftar peralatan olahraga & stok |
-| **Booking** | `POST` | `/api/v1/bookings` | Membuat reservasi lapangan / sewa alat baru |
-| **Payment** | `POST` | `/api/v1/payments/verify` | Konfirmasi pembayaran (integrasi payment gateway) |
-| **History** | `GET` | `/api/v1/bookings/history` | Mengambil riwayat booking pengguna |
-
-Saat menghubungkan ke backend, pengembang cukup mengganti penyimpanan sementara `localStorage`/`sessionStorage` pada [js/app.js](js/app.js) dengan pemanggilan `fetch()` atau `axios()` ke REST API Laravel.
-
----
-
-## 💻 Cara Menjalankan Secara Lokal
-
-1. **Clone Repository:**
-   ```bash
-   git clone https://github.com/EkyRamadhanie/SIBORA.git
-   cd SIBORA
+### 4. Konfigurasi Database
+1. Buat database baru di MySQL/phpMyAdmin:
+   ```sql
+   CREATE DATABASE sibora CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+   ```
+2. Buka file `.env` di folder `backend-laravel` dan sesuaikan port serta kredensial database Anda:
+   ```dotenv
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3308           # Ubah ke 3306 bila menggunakan port standar XAMPP
+   DB_DATABASE=sibora
+   DB_USERNAME=root
+   DB_PASSWORD=
+   ```
+3. Jalankan migrasi skema tabel dan isi data awal (*seeding*):
+   ```powershell
+   php artisan migrate --seed
    ```
 
-2. **Jalankan Web Server Lokal:**
-   * Menggunakan Python:
-     ```bash
-     python -m http.server 3000
-     ```
-   * Menggunakan PHP Built-in Server:
-     ```bash
-     php -S localhost:3000
-     ```
-   * Menggunakan VS Code Live Server extension.
-   * Atau cukup klik ganda file `index.html` langsung di browser Anda.
+### 5. Menjalankan Aplikasi
 
-3. **Akses Aplikasi:**
-   Buka peramban di `http://localhost:3000`
+#### Cara Cepat (Khusus Pengguna Windows + XAMPP):
+Cukup jalankan file batch di root folder:
+```powershell
+.\start_server.bat
+```
+*Skrip akan otomatis memeriksa koneksi MySQL XAMPP, menyalakan server Laravel Artisan, dan membuka browser Anda.*
+
+#### Cara Manual:
+Dari folder `backend-laravel`, jalankan:
+```bash
+php artisan serve --host=127.0.0.1 --port=8000
+```
+
+Buka peramban (browser) di alamat:
+- **Frontend Portal**: [`http://127.0.0.1:8000/index.html`](http://127.0.0.1:8000/index.html)
+- **API Health Check**: [`http://127.0.0.1:8000/api/v1/health`](http://127.0.0.1:8000/api/v1/health)
 
 ---
 
-## 📄 Lisensi & Kontributor
-- **Pengembang:** Tim Proyek SIBORA 2026
-- **Repository Resmi:** [GitHub EkyRamadhanie/SIBORA](https://github.com/EkyRamadhanie/SIBORA.git)
+## 🔑 Akun Demo Lokal
+
+Database seeder secara otomatis menyediakan beberapa akun pengujian untuk mencoba seluruh fitur:
+
+| Role | Username | Password | Email | Akses & Wewenang |
+|---|---|---|---|---|
+| 🛡️ **Admin** | `admin` | `admin123` | `admin@sibora.local` | Kelola seluruh pengguna, katalog global, laporan |
+| 🛡️ **Admin (Alt)** | `sibora` | `sibora2026` | `sibora@sibora.local` | Administrator cadangan |
+| 🏢 **Pengelola** | `budi` | `123456` | `budi@sibora.local` | Pengelola "Budi Sports Center" (Futsal A, Bola) |
+| 🏢 **Pengelola** | `pengelola` | `pengelola123` | `pengelola@sibora.local` | Pengelola "SIBORA Sport Arena" (Badminton, Basket) |
+| 👤 **Pelanggan** | `dani` | `123456` | `dani@sibora.local` | Pelanggan demo (dapat booking & sewa alat) |
+| 👤 **Pelanggan** | `user` | `123456` | `user@sibora.local` | Pelanggan demo standar |
+
+> ⚠️ **Penting:** Akun dan password di atas hanya untuk keperluan pengembangan (*development*) lokal. Jangan gunakan kredensial demo ini pada server produksi!
+
+---
+
+## 🧪 Pengujian API
+
+SIBORA menyediakan dua alternatif praktis untuk menguji seluruh 44 endpoint RESTful API:
+
+1. **VS Code REST Client**:
+   Buka file [`SIBORA_API.http`](SIBORA_API.http) pada Visual Studio Code (dengan ekstensi *REST Client* terpasang), lalu klik tautan `Send Request` di atas masing-masing method.
+2. **Postman**:
+   Impor file koleksi [`postman/SIBORA.postman_collection.json`](postman/SIBORA.postman_collection.json) ke aplikasi Postman Anda untuk pengujian terstruktur.
+
+---
+
+## 📚 Indeks Dokumentasi Arsitektur
+
+Untuk pemahaman teknis mendalam dan kelanjutan proyek, silakan telusuri berkas panduan berikut:
+
+- 🏛️ [**ARCHITECTURE.md**](docs/ARCHITECTURE.md): Diagram alur arsitektur, matriks otorisasi RBAC, siklus status transaksi, dan mekanisme upload file.
+- 🗄️ [**DATABASE_SCHEMA.md**](docs/DATABASE_SCHEMA.md): Entity Relationship Diagram (ERD) lengkap, spesifikasi kamus data 17 tabel, relasi cascade, dan indeks query.
+- 📡 [**API_DOCUMENTATION.md**](docs/API_DOCUMENTATION.md): Rujukan lengkap 44 endpoint API, struktur request body, dan format respons JSON.
+- 📝 [**DATABASE_AND_CLEANUP_AUDIT.md**](docs/DATABASE_AND_CLEANUP_AUDIT.md): Laporan riwayat audit pembersihan dan konsistensi skema.
+- 🤝 [**CONTRIBUTING.md**](CONTRIBUTING.md): Standar kontribusi open-source, konvensi branching Git, dan format Conventional Commits.
+- 🗺️ [**ROADMAP.md**](ROADMAP.md): Panduan strategis pengembangan lanjutan (Payment Gateway Midtrans/Xendit, WebSockets, Notifikasi WhatsApp, PWA/Mobile App, dan Docker).
+
+---
+
+## 🗺️ Rencana Pengembangan (Roadmap)
+
+Tahapan perluasan yang siap diimplementasikan untuk kebutuhan komersial skala besar:
+- [ ] **Fase 1:** Integrasi Payment Gateway resmi (Midtrans Snap / Xendit API & webhook signature validation).
+- [ ] **Fase 2:** *Concurrency Locking* (`lockForUpdate`) dan slot ketersediaan real-time via WebSockets (Laravel Reverb / Pusher).
+- [ ] **Fase 3:** Pengiriman tiket/struk PDF otomatis via Email dan pengingat jadwal via WhatsApp Gateway (Fonnte/Twilio).
+- [ ] **Fase 4:** PWA (Progressive Web App) dengan offline caching atau transisi ke aplikasi Mobile (Flutter / React Native).
+- [ ] **Fase 5:** Automated Feature Testing (PHPUnit / Pest) dan CI/CD pipeline via GitHub Actions.
+- [ ] **Fase 6:** Kontainerisasi Docker dan deployment berbasis cloud (AWS / DigitalOcean + Redis caching).
+
+*Rincian teknis implementasi masing-masing fase dapat dilihat di [ROADMAP.md](ROADMAP.md).*
+
+---
+
+## 🔒 Standar Keamanan
+
+- **Autentikasi Token Kriptografis:** Penggunaan token Laravel Sanctum dengan verifikasi status akun aktif di setiap request.
+- **Enkripsi Sandi Kuat:** Hash Bcrypt satu arah untuk seluruh kredensial sandi pengguna.
+- **Pencegahan SQL Injection:** Parameterized binding secara penuh melalui Eloquent ORM.
+- **Sanitasi File Unggahan:** Validasi ketat terhadap tipe MIME asli, ekstensi file, dan batas ukuran gambar maksimum 5 MB.
+- **Isolasi Multi-Tenant Data:** Pengelola dibatasi hanya dapat mengakses dan memodifikasi aset serta laporan milik bisnisnya sendiri.
+
+---
+
+## 📄 Lisensi & Hak Cipta
+
+Proyek ini dilisensikan di bawah lisensi terbuka [MIT License](LICENSE). Anda bebas menggunakan, memodifikasi, dan mendistribusikan kode ini untuk keperluan pembelajaran maupun komersial.
+
+Dikembangkan oleh **[Eky Ramadhanie](https://github.com/EkyRamadhanie)**.
